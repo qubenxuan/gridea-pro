@@ -71,6 +71,44 @@ jobs:
 
           wails build -platform darwin/arm64 -clean -debug -ldflags "${LDFLAGS}"
 
+      - name: Scan Safari-incompatible RegExp lookbehind
+        if: always()
+        shell: bash
+        run: |
+          set +e
+
+          echo "=== scan frontend/src ==="
+          if [ -d frontend/src ]; then
+            grep -RInE '\(\?<[=!]' frontend/src \
+              --include='*.js' \
+              --include='*.ts' \
+              --include='*.vue' \
+              --include='*.mjs' \
+              --include='*.cjs' || true
+          fi
+
+          echo "=== scan frontend/dist ==="
+          if [ -d frontend/dist ]; then
+            grep -RInE '\(\?<[=!]' frontend/dist \
+              --include='*.js' \
+              --include='*.mjs' \
+              --include='*.cjs' || true
+          else
+            echo "frontend/dist not found"
+          fi
+
+          echo "=== scan frontend/node_modules, first 100 matches ==="
+          if [ -d frontend/node_modules ]; then
+            grep -RInE '\(\?<[=!]' frontend/node_modules \
+              --include='*.js' \
+              --include='*.mjs' \
+              --include='*.cjs' \
+              --exclude-dir='.cache' \
+              | head -100 || true
+          else
+            echo "frontend/node_modules not found"
+          fi
+
       - name: Build MCP server
         env:
           GOOS: darwin
