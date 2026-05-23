@@ -44,16 +44,71 @@ jobs:
       - name: Install Wails CLI
         run: go install github.com/wailsapp/wails/v2/cmd/wails@latest
 
-      - name: Patch wails.json productVersion
+      - name: Patch wails.json productVersion and Safari 12 compatibility
         shell: bash
         run: |
           VER="${VERSION#v}"
+
+          mkdir -p frontend/scripts
+
+          cat > frontend/scripts/patch-safari12.js <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+
+          const assetsDir = path.resolve(process.cwd(), 'dist', 'assets');
+
+          const patterns = [
+            String.raw`|(?<=['"\s])(#)([A-Fa-f0-9]{3})\b`,
+            String.raw`|(?<=['"\s])(#)([A-Fa-f0-9]{4})\b`,
+            String.raw`|(?<=['"\s])(#)([A-Fa-f0-9]{6})\b`,
+            String.raw`|(?<=['"\s])(#)([A-Fa-f0-9]{8})\b`,
+          ];
+
+          if (!fs.existsSync(assetsDir)) {
+            console.log('[safari12 patch] dist/assets not found, skip');
+            process.exit(0);
+          }
+
+          let changed = 0;
+
+          for (const file of fs.readdirSync(assetsDir)) {
+            if (!file.endsWith('.js')) continue;
+
+            const fullPath = path.join(assetsDir, file);
+            let code = fs.readFileSync(fullPath, 'utf8');
+            const original = code;
+
+            for (const pattern of patterns) {
+              code = code.split(pattern).join('');
+            }
+
+            if (code !== original) {
+              fs.writeFileSync(fullPath, code);
+              changed++;
+              console.log('[safari12 patch] patched:', file);
+            }
+          }
+
+          if (changed === 0) {
+            console.log('[safari12 patch] no target matched');
+          } else {
+            console.log(`[safari12 patch] patched ${changed} file(s)`);
+          }
+          NODE
+
           node -e "
             const fs = require('fs');
             const j = JSON.parse(fs.readFileSync('wails.json', 'utf8'));
+
             j.info.productVersion = '$VER';
+
+            // Wails 会在 frontend 目录执行 frontend:build。
+            // 所以这里让 npm run build 后立刻修补 dist，再让 Wails 嵌入修补后的前端产物。
+            j['frontend:build'] = 'npm run build && node scripts/patch-safari12.js';
+
             fs.writeFileSync('wails.json', JSON.stringify(j, null, 4) + '\n');
             console.log('wails.json productVersion -> $VER');
+            console.log('wails.json frontend:build ->', j['frontend:build']);
           "
 
       - name: Build macOS arm64
