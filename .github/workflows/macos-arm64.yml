@@ -69,7 +69,7 @@ jobs:
           LDFLAGS="${LDFLAGS} -X gridea-pro/backend/internal/service/oauth.vercelClientID=${VERCEL_CLIENT_ID}"
           LDFLAGS="${LDFLAGS} -X gridea-pro/backend/internal/service/oauth.vercelClientSecret=${VERCEL_CLIENT_SECRET}"
 
-          wails build -platform darwin/arm64 -clean -trimpath -ldflags "${LDFLAGS}"
+          wails build -platform darwin/arm64 -clean -debug -ldflags "${LDFLAGS}"
 
       - name: Build MCP server
         env:
