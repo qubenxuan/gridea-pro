@@ -96,21 +96,41 @@ jobs:
           }
           NODE
 
+          cat > frontend/scripts/wails-build-safari12.js <<'NODE'
+          const { execFileSync } = require('child_process');
+
+          console.log('[wails build] running vite build...');
+          execFileSync('npx', ['vite', 'build'], {
+            stdio: 'inherit',
+            cwd: process.cwd(),
+          });
+
+          console.log('[wails build] patching Safari 12 incompatible regex...');
+          execFileSync(process.execPath, ['scripts/patch-safari12.js'], {
+            stdio: 'inherit',
+            cwd: process.cwd(),
+          });
+          NODE
+
           node -e "
             const fs = require('fs');
-            const j = JSON.parse(fs.readFileSync('wails.json', 'utf8'));
 
-            j.info.productVersion = '$VER';
+            const wailsPath = 'wails.json';
+            const wails = JSON.parse(fs.readFileSync(wailsPath, 'utf8'));
 
-            // Wails 会在 frontend 目录执行 frontend:build。
-            // 所以这里让 npm run build 后立刻修补 dist，再让 Wails 嵌入修补后的前端产物。
-            j['frontend:build'] = 'npm run build && node scripts/patch-safari12.js';
+            wails.info.productVersion = '$VER';
 
-            fs.writeFileSync('wails.json', JSON.stringify(j, null, 4) + '\n');
+            // 注意：这里不能写 npm run build && node ...
+            // Wails 会把 && 当成参数传给 npm/Vite。
+            wails['frontend:build'] = 'node scripts/wails-build-safari12.js';
+
+            fs.writeFileSync(wailsPath, JSON.stringify(wails, null, 4) + '\n');
+
             console.log('wails.json productVersion -> $VER');
-            console.log('wails.json frontend:build ->', j['frontend:build']);
+            console.log('wails.json frontend:build ->', wails['frontend:build']);
           "
 
+    
       - name: Build macOS arm64
         shell: bash
         run: |
