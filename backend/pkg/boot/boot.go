@@ -232,7 +232,7 @@ func Run(assets embed.FS, version string) {
 			Middleware: NewFileServerMiddleware(appDir), // Inject secure middleware
 		},
 		BackgroundColour: &options.RGBA{R: 255, G: 255, B: 255, A: 1},
-		StartHidden:      true,
+		StartHidden:      false,
 		OnStartup: func(ctx context.Context) {
 			appCtx = ctx // Capture context
 			application.Startup(ctx)
