@@ -21,16 +21,16 @@ v-if="sidebarVisible"
             <li v-for="menu in sideMenus" :key="menu.router">
               <Button
 variant="ghost"
-                class="w-full justify-start px-3 py-2.5 h-12 font-normal hover:bg-primary/15 cursor-pointer transition-colors"
+                class="w-full justify-start px-3 py-2.5 h-12 font-normal hover:bg-[var(--primary-soft)] cursor-pointer transition-colors"
                 :class="[
                   currentRouter === menu.router
-                    ? 'bg-primary/10 text-primary font-medium hover:bg-primary/15'
+                    ? 'bg-[var(--primary-soft-hover)] text-[var(--primary-strong)] font-medium hover:bg-[var(--primary-soft-hover)]'
                     : 'text-muted-foreground hover:text-foreground'
                 ]" @click="clickMenu(menu)">
                 <div class="flex items-center w-full">
                   <component
 :is="menu.icon" v-if="menu.icon" class="mr-3 size-4 transition-colors duration-200"
-                    :class="currentRouter === menu.router ? 'text-primary' : 'text-muted-foreground group-hover:text-primary'" />
+                    :class="currentRouter === menu.router ? 'text-[var(--primary-strong)]' : 'text-muted-foreground group-hover:text-[var(--primary-strong)]'" />
                   <span class="text-xs flex-1 text-left">{{ menu.text }}</span>
                   <span
 v-if="menu.router === '/comments' && commentStore.unreadCount > 0"
@@ -39,7 +39,7 @@ v-if="menu.router === '/comments' && commentStore.unreadCount > 0"
                   </span>
                   <span
 v-if="(menu.count || 0) > 0" class="text-xs transition-colors duration-200 ml-2"
-                    :class="currentRouter === menu.router ? 'text-primary opacity-80' : 'text-muted-foreground opacity-50'">
+                    :class="currentRouter === menu.router ? 'text-[var(--primary-strong)] opacity-80' : 'text-muted-foreground opacity-50'">
                     {{ menu.count }}
                   </span>
                 </div>
@@ -51,9 +51,9 @@ v-if="(menu.count || 0) > 0" class="text-xs transition-colors duration-200 ml-2"
 
       <!-- Bottom Actions -->
       <div class="p-4 bg-sidebar border-r border-border flex flex-col items-center gap-3 z-50">
-        <Button
+<Button
 variant="outline"
-          class="w-36 h-8 text-xs justify-center rounded-full border-primary/20 hover:bg-primary/5 cursor-pointer"
+          class="w-36 h-8 text-xs justify-center rounded-full border-[var(--primary-border)] hover:bg-[var(--primary-soft)] cursor-pointer"
           @click="preview">
           <EyeIcon class="size-3 mr-2" />
           {{ t('nav.preview') }}
@@ -65,7 +65,7 @@ variant="default"
           class="w-36 h-8 text-xs justify-center rounded-full cursor-pointer"
           :class="publishLoading
             ? 'bg-destructive text-destructive-foreground hover:bg-destructive/90'
-            : 'bg-primary text-background hover:bg-primary/90'"
+            : 'bg-primary text-primary-foreground hover:bg-primary/90'"
           @click="publishLoading ? cancelPublish() : publish()">
           <template v-if="publishLoading && !cancelling">
             <svg
@@ -90,17 +90,17 @@ class="opacity-75" fill="currentColor"
 
         <div class="flex items-center justify-center gap-6 text-muted-foreground w-[80%]">
           <GlobeAltIcon
-v-if="siteStore.currentDomain" class="size-4 cursor-pointer hover:text-primary transition-colors duration-300"
+v-if="siteStore.currentDomain" class="size-4 cursor-pointer hover:text-[var(--primary-strong)] transition-colors duration-300"
             @click="goWeb" />
 
           <CogIcon
-class="size-4 cursor-pointer hover:text-primary transition-colors duration-300"
+class="size-4 cursor-pointer hover:text-[var(--primary-strong)] transition-colors duration-300"
             title="设置" @click="openPreferences" />
 
           <div class="relative group" title="Star Support">
             <svg
 viewBox="0 0 24 24" aria-hidden="true"
-              class="size-4 cursor-pointer hover:text-primary transition-colors duration-300 fill-current"
+              class="size-4 cursor-pointer hover:text-[var(--primary-strong)] transition-colors duration-300 fill-current"
               @click="handleGithubClick">
               <path
 fill-rule="evenodd" clip-rule="evenodd"
@@ -111,7 +111,7 @@ fill-rule="evenodd" clip-rule="evenodd"
           <ArrowUpCircleIcon
             v-if="hasUpdate"
             :title="t('update.title')"
-            class="update-indicator size-4 cursor-pointer text-primary hover:text-primary/80 transition-colors duration-300"
+            class="update-indicator size-4 cursor-pointer text-[var(--primary-strong)] hover:text-[var(--primary-strong)] transition-colors duration-300"
             @click="openUpdateDialog" />
         </div>
       </div>
@@ -144,7 +144,7 @@ fill-rule="evenodd" clip-rule="evenodd"
             <div class="flex items-center gap-2 mb-1.5">
               <span
                 v-if="publishLoading"
-                class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary/10 text-primary text-[11px] font-medium">
+                class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[var(--primary-soft)] text-[var(--primary-strong)] text-[11px] font-medium">
                 <span class="size-1.5 rounded-full bg-primary animate-pulse"></span>
                 部署中
               </span>
@@ -172,7 +172,7 @@ fill-rule="evenodd" clip-rule="evenodd"
             </div>
           </div>
           <button
-            class="size-7 flex-shrink-0 grid place-items-center rounded-full text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
+            class="size-7 flex-shrink-0 grid place-items-center rounded-full text-muted-foreground hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-border)]"
             @click="deployPanelVisible = false">
             <XMarkIcon class="size-4" />
           </button>
@@ -221,13 +221,13 @@ fill-rule="evenodd" clip-rule="evenodd"
           </span>
           <div class="flex items-center gap-1">
             <button
-              class="h-7 px-3 text-[11px] rounded-full text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors cursor-pointer"
+              class="h-7 px-3 text-[11px] rounded-full text-muted-foreground hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] transition-colors cursor-pointer"
               @click="copyDeployLogs">
               复制日志
             </button>
             <button
               v-if="!publishLoading && deployLogs.length > 0"
-              class="h-7 px-3 text-[11px] rounded-full text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors cursor-pointer"
+              class="h-7 px-3 text-[11px] rounded-full text-muted-foreground hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] transition-colors cursor-pointer"
               @click="clearDeployLogs">
               清空
             </button>
@@ -242,7 +242,7 @@ fill-rule="evenodd" clip-rule="evenodd"
         <DialogTitle class="sr-only">{{ t('update.title') }}</DialogTitle>
 
         <!-- Hero -->
-        <div class="relative px-6 pt-8 pb-5 bg-gradient-to-br from-primary/15 via-primary/5 to-transparent">
+        <div class="relative px-6 pt-8 pb-5 bg-[linear-gradient(135deg,var(--primary-soft-hover),var(--primary-soft),transparent)]">
           <div class="flex items-start gap-4">
             <img
               src="@/assets/logo-pro.png" alt="Gridea Pro"
@@ -256,7 +256,7 @@ fill-rule="evenodd" clip-rule="evenodd"
                   v{{ currentVersion }}
                 </span>
                 <ArrowRightIcon class="size-3 text-muted-foreground" />
-                <span class="inline-flex items-center justify-center h-4 px-2 rounded-full bg-primary/10 text-[10px] text-primary/80 border border-primary/20 font-mono">
+                <span class="inline-flex items-center justify-center h-4 px-2 rounded-full bg-[var(--primary-soft)] text-[10px] text-[var(--primary-strong)] border border-[var(--primary-border)] font-mono">
                   v{{ newVersion }}
                 </span>
               </div>
@@ -284,7 +284,7 @@ fill-rule="evenodd" clip-rule="evenodd"
                 :style="{ width: downloadPercent + '%' }"></div>
             </div>
           </div>
-          <div v-else-if="updateState === 'ready'" class="flex items-center gap-2 text-xs text-primary">
+          <div v-else-if="updateState === 'ready'" class="flex items-center gap-2 text-xs text-[var(--primary-strong)]">
             <CheckCircleIcon class="size-4" />
             <span>{{ t('update.readyToRestart') }}</span>
           </div>
@@ -302,7 +302,7 @@ fill-rule="evenodd" clip-rule="evenodd"
           <div class="flex items-center gap-3">
             <button
               :title="t('update.viewOnGithub')"
-              class="size-7 grid place-items-center rounded-full text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
+              class="size-7 grid place-items-center rounded-full text-muted-foreground hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-border)]"
               @click="openInBrowser('https://github.com/Gridea-Pro/gridea-pro/releases')">
               <svg viewBox="0 0 24 24" aria-hidden="true" class="size-4 fill-current">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.335 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
@@ -310,7 +310,7 @@ fill-rule="evenodd" clip-rule="evenodd"
             </button>
             <button
               v-if="updateState === 'idle'"
-              class="text-xs text-muted-foreground hover:text-primary transition-colors cursor-pointer focus:outline-none"
+              class="text-xs text-muted-foreground hover:text-[var(--primary-strong)] transition-colors cursor-pointer focus:outline-none"
               @click="skipThisVersion">
               {{ t('update.skip') }}
             </button>
@@ -320,13 +320,13 @@ fill-rule="evenodd" clip-rule="evenodd"
             <template v-if="updateState === 'idle'">
               <Button
                 variant="outline"
-                class="w-20 h-8 text-xs justify-center rounded-full border border-primary/20 text-primary/80 hover:bg-primary/5 hover:text-primary cursor-pointer"
+                class="w-20 h-8 text-xs justify-center rounded-full border border-[var(--primary-border)] text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] cursor-pointer"
                 @click="updateModalVisible = false">
                 {{ t('update.later') }}
               </Button>
               <Button
                 variant="default"
-                class="w-24 h-8 text-xs justify-center rounded-full bg-primary text-background hover:bg-primary/90 cursor-pointer"
+                class="w-24 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
                 @click="startUpdate">
                 {{ t('update.install') }}
               </Button>
@@ -335,7 +335,7 @@ fill-rule="evenodd" clip-rule="evenodd"
             <template v-else-if="updateState === 'downloading'">
               <Button
                 variant="outline"
-                class="w-20 h-8 text-xs justify-center rounded-full border border-primary/20 text-primary/80 hover:bg-primary/5 hover:text-primary cursor-pointer"
+                class="w-20 h-8 text-xs justify-center rounded-full border border-[var(--primary-border)] text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] cursor-pointer"
                 @click="cancelUpdate">
                 {{ t('common.cancel') }}
               </Button>
@@ -344,13 +344,13 @@ fill-rule="evenodd" clip-rule="evenodd"
             <template v-else-if="updateState === 'ready'">
               <Button
                 variant="outline"
-                class="w-20 h-8 text-xs justify-center rounded-full border border-primary/20 text-primary/80 hover:bg-primary/5 hover:text-primary cursor-pointer"
+                class="w-20 h-8 text-xs justify-center rounded-full border border-[var(--primary-border)] text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] cursor-pointer"
                 @click="updateModalVisible = false">
                 {{ t('update.later') }}
               </Button>
               <Button
                 variant="default"
-                class="w-24 h-8 text-xs justify-center rounded-full bg-primary text-background hover:bg-primary/90 cursor-pointer"
+                class="w-24 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
                 @click="applyUpdate">
                 {{ t('update.restart') }}
               </Button>
@@ -359,13 +359,13 @@ fill-rule="evenodd" clip-rule="evenodd"
             <template v-else-if="updateState === 'error'">
               <Button
                 variant="outline"
-                class="w-20 h-8 text-xs justify-center rounded-full border border-primary/20 text-primary/80 hover:bg-primary/5 hover:text-primary cursor-pointer"
+                class="w-20 h-8 text-xs justify-center rounded-full border border-[var(--primary-border)] text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] cursor-pointer"
                 @click="updateModalVisible = false">
                 {{ t('update.later') }}
               </Button>
               <Button
                 variant="default"
-                class="w-24 h-8 text-xs justify-center rounded-full bg-primary text-background hover:bg-primary/90 cursor-pointer"
+                class="w-24 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
                 @click="startUpdate">
                 {{ t('update.retry') }}
               </Button>
