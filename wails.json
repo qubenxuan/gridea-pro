@@ -3,7 +3,7 @@
     "outputfilename": "Gridea Pro",
     "frontend:dir": "./frontend",
     "frontend:install": "npm install --force",
-    "frontend:build": "node scripts/wails-build-old-webkit.js"
+    "frontend:build": "node scripts/wails-build-old-webkit.js",
     "frontend:dev:watcher": "npm run dev",
     "frontend:dev:serverUrl": "http://localhost:5173",
     "wailsjsdir": "./frontend/src",
