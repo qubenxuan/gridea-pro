@@ -1,6 +1,6 @@
 <template>
     <div
-        class="rounded-xl relative transition-all duration-200 bg-primary/2 border border-primary/10 hover:bg-primary/5 hover:shadow-xs hover:-translate-y-0.5 p-5">
+        class="rounded-xl relative transition-all duration-200 bg-card text-card-foreground border border-border hover:border-[var(--primary-border)] hover:bg-[var(--primary-soft)] hover:shadow-xs hover:-translate-y-0.5 p-5">
         <!-- Top: User Info -->
         <div class="flex justify-between items-start mb-3">
             <div class="flex items-center gap-3">
@@ -13,8 +13,8 @@
                         class="w-10 h-10 rounded-full bg-secondary object-cover border border-border" alt="avatar" />
                     <div class="flex items-center gap-2 flex-wrap">
                         <span
-class="font-semibold text-foreground"
-                            :class="{ 'group-hover:text-primary transition-colors': comment.url }">
+class="font-semibold text-card-foreground"
+                            :class="{ 'group-hover:text-[var(--primary-strong)] transition-colors': comment.url }">
                             {{ comment.nickname }}
                         </span>
                     </div>
@@ -25,7 +25,7 @@ class="font-semibold text-foreground"
 
             <div class="flex items-center gap-1">
                 <button
-                    class="p-2 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-lg transition-colors"
+                    class="p-2 text-muted-foreground hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] rounded-lg transition-colors"
                     :title="t('comment.reply')" @click="toggleReplyForm">
                     <ChatBubbleOvalLeftEllipsisIcon class="size-3" />
                 </button>
@@ -53,7 +53,7 @@ ref="contentRef" :class="{ 'max-h-[240px] overflow-hidden': !isExpanded && isOve
 v-if="isOverflowing && !isExpanded"
                 class="absolute bottom-0 w-full h-16 bg-gradient-to-t from-background via-background/60 to-transparent flex justify-center items-end pb-0 cursor-pointer pl-[52px] rounded-b-xl"
                 @click.stop="toggleExpand">
-                <div class="text-primary/80 hover:text-primary transition-colors hover:scale-110 animate-bounce">
+                <div class="text-[var(--primary-strong)] hover:text-[var(--primary-strong)] transition-colors hover:scale-110 animate-bounce">
                     <ChevronDoubleDownIcon class="size-4" />
                 </div>
             </div>
@@ -62,7 +62,7 @@ v-if="isOverflowing && !isExpanded"
             <div
 v-if="isExpanded && isOverflowing"
                 class="w-full flex justify-center items-center -mt-2 mb-2 cursor-pointer" @click.stop="toggleExpand">
-                <div class="text-primary/80 hover:text-primary transition-colors hover:scale-110">
+                <div class="text-[var(--primary-strong)] hover:text-[var(--primary-strong)] transition-colors hover:scale-110">
                     <ChevronDoubleUpIcon class="size-4" />
                 </div>
             </div>
@@ -82,10 +82,10 @@ v-model="replyContent" :placeholder="`${t('comment.reply')} @${comment.nickname}
                 <div class="flex gap-2">
                     <Button
 variant="outline"
-                        class="text-primary/80 text-xs px-4 h-8 border border-primary/10 rounded-full cursor-pointer hover:bg-primary/10 hover:text-primary transition-colors"
+                        class="text-[var(--primary-strong)] text-xs px-4 h-8 border border-[var(--primary-border)] rounded-full cursor-pointer hover:bg-[var(--primary-soft)] transition-colors"
                         @click="cancelReply">{{ t('comment.cancel') }}</Button>
                     <Button
-variant="default" class="text-xs px-4 h-8 border border-primary/10 rounded-full cursor-pointer"
+variant="default" class="text-xs px-4 h-8 border border-[var(--primary-border)] rounded-full cursor-pointer"
                         @click="submitReply">
                         {{ t('comment.reply') }}
                     </Button>
@@ -95,7 +95,7 @@ variant="default" class="text-xs px-4 h-8 border border-primary/10 rounded-full 
 
         <!-- Bottom: Article Reference -->
         <div
-            class="ml-[52px] bg-secondary/50 rounded-lg px-3 py-2 text-xs text-muted-foreground flex items-center gap-2 border border-border/50 hover:text-primary">
+            class="ml-[52px] bg-secondary/50 rounded-lg px-3 py-2 text-xs text-muted-foreground flex items-center gap-2 border border-border/50 hover:text-[var(--primary-strong)]">
             <DocumentTextIcon class="size-4 flex-shrink-0" />
             <a
 :href="comment.articleUrl || comment.articleId || 'javascript:void(0)'"

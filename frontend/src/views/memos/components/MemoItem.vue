@@ -1,6 +1,6 @@
 <template>
     <div
-        class="memo-item group p-4 rounded-xl border border-border/50 bg-card/50 hover:bg-primary/5 hover:shadow-xs hover:-translate-y-0.5 transition-all duration-200">
+        class="memo-item group p-4 rounded-xl border border-border/50 bg-card/50 hover:bg-[var(--primary-soft)] hover:shadow-xs hover:-translate-y-0.5 transition-all duration-200">
         <!-- Viewing Mode -->
         <div v-if="!isEditing">
             <div
@@ -17,12 +17,12 @@ class="memo-content text-sm text-foreground leading-7 tracking-wider mb-3 whites
 
                 <div class="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                     <button
-                        class="p-1.5 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-md transition-colors cursor-pointer"
+                        class="p-1.5 text-muted-foreground hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] rounded-md transition-colors cursor-pointer"
                         :title="t('common.copy')" @click="handleCopy">
                         <ClipboardDocumentIcon class="size-3.5" />
                     </button>
                     <button
-                        class="p-1.5 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-md transition-colors cursor-pointer"
+                        class="p-1.5 text-muted-foreground hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] rounded-md transition-colors cursor-pointer"
                         :title="t('common.edit')" @click="startEdit">
                         <PencilIcon class="size-3.5" />
                     </button>
@@ -84,7 +84,7 @@ onUnmounted(() => {
 })
 
 const highlightedContent = computed(() => {
-    return highlightTags(props.memo.content || '', 'text-primary font-medium cursor-pointer')
+    return highlightTags(props.memo.content || '', 'text-[var(--primary-strong)] font-medium cursor-pointer')
 })
 
 const startEdit = async () => {

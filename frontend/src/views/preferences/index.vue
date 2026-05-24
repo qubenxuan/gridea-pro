@@ -58,8 +58,8 @@ v-for="item in navItems" :key="item.key"
             <div
               class="group flex w-full min-w-0 max-w-full items-center gap-3 px-4 py-3 mb-2 rounded-lg border transition-all duration-200 overflow-hidden"
               :class="site.active
-                ? 'bg-primary/5 border-primary/30'
-                : 'bg-card/50 border-border/50 hover:bg-primary/2 hover:border-primary/20'">
+                ? 'bg-[var(--primary-soft)] border-[var(--primary-border)]'
+                : 'bg-card/50 border-border/50 hover:bg-card hover:border-[var(--primary-border)]'">
               <!-- 拖拽手柄 -->
               <div class="handle flex-shrink-0 cursor-move text-muted-foreground/40 hover:text-muted-foreground">
                 <Bars3Icon class="size-3.5" />
@@ -108,8 +108,8 @@ v-for="item in navItems" :key="item.key"
         <RadioGroup v-model="aiForm.mode" class="space-y-4">
           <!-- 内置模型 -->
           <label
-            class="flex items-start gap-3 p-4 rounded-lg border border-border cursor-pointer hover:border-primary/40 transition-colors"
-            :class="{ 'border-primary/60 bg-primary/5': aiForm.mode === 'builtin' }">
+            class="flex items-start gap-3 p-4 rounded-lg border border-border cursor-pointer hover:border-[var(--primary-border)] transition-colors"
+            :class="{ 'border-[var(--primary-border)] bg-[var(--primary-soft)]': aiForm.mode === 'builtin' }">
             <RadioGroupItem value="builtin" class="mt-0.5" />
             <div class="flex-1">
               <div class="text-sm font-medium text-foreground">
@@ -132,8 +132,8 @@ v-for="item in navItems" :key="item.key"
 
           <!-- 自定义模型 -->
           <label
-            class="flex items-start gap-3 p-4 rounded-lg border border-border cursor-pointer hover:border-primary/40 transition-colors"
-            :class="{ 'border-primary/60 bg-primary/5': aiForm.mode === 'custom' }">
+            class="flex items-start gap-3 p-4 rounded-lg border border-border cursor-pointer hover:border-[var(--primary-border)] transition-colors"
+            :class="{ 'border-[var(--primary-border)] bg-[var(--primary-soft)]': aiForm.mode === 'custom' }">
             <RadioGroupItem value="custom" class="mt-0.5" />
             <div class="flex-1">
               <div class="text-sm font-medium text-foreground">{{ t('settings.ai.modeCustom') }}</div>
@@ -203,7 +203,7 @@ v-for="item in navItems" :key="item.key"
                   <div class="flex-1 space-y-1.5">
                     <Input v-model="currentApiKey" type="password" placeholder="sk-..." />
                     <div v-if="currentProviderInfo?.apiKeyURL" class="text-xs">
-                      <a class="inline-flex items-center gap-1 text-primary hover:underline cursor-pointer"
+                      <a class="inline-flex items-center gap-1 text-[var(--primary-strong)] hover:underline cursor-pointer"
                         @click.prevent="openApiKeyURL(currentProviderInfo!.apiKeyURL)">
                         {{ t('settings.ai.getApiKey') }}
                         <ArrowTopRightOnSquareIcon class="size-3" />
@@ -216,7 +216,7 @@ v-for="item in navItems" :key="item.key"
                 <div v-if="aiForm.activeProvider" class="flex items-center gap-3">
                   <Label class="w-20 text-xs shrink-0">&nbsp;</Label>
                   <Button variant="outline" type="button"
-                    class="h-8 px-4 text-xs rounded-full border-primary/30 text-primary hover:bg-primary/5 cursor-pointer"
+                    class="h-8 px-4 text-xs rounded-full border-[var(--primary-border)] text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] cursor-pointer"
                     :disabled="testingConnection" @click="handleTestConnection">
                     {{ testingConnection ? t('settings.ai.testing') : t('settings.ai.testConnection') }}
                   </Button>
@@ -228,7 +228,7 @@ v-for="item in navItems" :key="item.key"
 
         <div class="flex justify-end mt-6">
           <Button variant="default"
-            class="h-8 px-5 text-xs rounded-full bg-primary text-background hover:bg-primary/90 cursor-pointer"
+            class="h-8 px-5 text-xs rounded-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
             @click="saveAISetting">
             {{ t('common.save') }}
           </Button>
@@ -257,7 +257,7 @@ v-for="item in navItems" :key="item.key"
           <img src="@/assets/logo.png" class="w-20 h-20 mb-4" />
           <div class="text-xl font-semibold text-foreground mb-1">Gridea Pro</div>
           <div class="text-sm text-muted-foreground mb-4">{{ t('settings.system.version') }} {{ version }}</div>
-          <a class="text-primary cursor-pointer hover:underline" @click.prevent="openWebsite">gridea.pro</a>
+          <a class="text-[var(--primary-strong)] cursor-pointer hover:underline" @click.prevent="openWebsite">gridea.pro</a>
         </div>
       </div>
     </div>
@@ -286,11 +286,11 @@ v-for="item in navItems" :key="item.key"
         <DialogFooter class="gap-3">
           <Button
 variant="outline"
-            class="w-18 h-8 text-xs justify-center rounded-full border border-primary/20 text-primary/80 hover:bg-primary/5 hover:text-primary cursor-pointer"
+            class="w-18 h-8 text-xs justify-center rounded-full border border-[var(--primary-border)] text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] hover:text-[var(--primary-strong)] cursor-pointer"
             @click="showAddDialog = false">{{ t('common.cancel') }}</Button>
           <Button
 variant="default"
-            class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-background hover:bg-primary/90 cursor-pointer"
+            class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
             :disabled="!newSiteName || !newSitePath" @click="confirmAddSite">{{ t('common.save') }}</Button>
         </DialogFooter>
       </DialogContent>

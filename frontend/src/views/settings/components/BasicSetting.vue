@@ -4,10 +4,10 @@
 
       <!-- ── 当前平台 ───────────────────────────────────────────── -->
       <div v-if="activePlatformData" class="space-y-4">
-        <h2 class="text-sm text-primary font-medium border-l-[3px] border-primary pl-3 flex items-center h-4">
+        <h2 class="text-sm text-[var(--primary-strong)] font-medium border-l-[3px] border-primary pl-3 flex items-center h-4">
           {{ t('settings.network.currentPlatform') }}
         </h2>
-        <div class="border border-primary/20 rounded-xl overflow-hidden">
+        <div class="border border-[var(--primary-border)] rounded-xl overflow-hidden">
           <!-- 顶部：基本信息 + 操作 -->
           <div class="flex items-center gap-5 px-6 py-5">
             <div class="size-11 rounded-lg flex items-center justify-center text-white flex-shrink-0 shadow-sm"
@@ -49,7 +49,7 @@
               <!-- OAuth 已连接：编辑配置 + 断开连接 -->
               <template v-if="activeStatus?.connected && activeStatus?.connectedVia === 'oauth'">
                 <Button variant="outline" size="sm"
-                  class="h-8 text-xs rounded-full px-4 text-primary hover:bg-primary/10 hover:text-primary border-primary/20"
+                  class="h-8 text-xs rounded-full px-4 text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] hover:text-[var(--primary-strong)] border-[var(--primary-border)]"
                   @click="openDrawer(activePlatformData.id)">
                   <Cog6ToothIcon class="size-3.5 mr-1.5" />
                   {{ t('settings.network.editConfig') }}
@@ -64,20 +64,20 @@
               <template v-else-if="activeStatus?.connected && activeStatus?.connectedVia === 'manual'">
                 <template v-if="activePlatformData.hasOAuth">
                   <Button v-if="!oauthLoading[activePlatformData.id]" variant="default" size="sm"
-                    class="h-8 text-xs rounded-full px-4 bg-primary text-background hover:bg-primary/90"
+                    class="h-8 text-xs rounded-full px-4 bg-primary text-primary-foreground hover:bg-primary/90"
                     @click="handleOAuth(activePlatformData.id)">
                     <KeyIcon class="size-3.5 mr-1.5" />
                     {{ t('settings.network.connectViaOAuth') }}
                   </Button>
                   <Button v-else variant="default" size="sm"
-                    class="h-8 text-xs rounded-full px-4 bg-primary/80 text-background hover:bg-destructive"
+                    class="h-8 text-xs rounded-full px-4 bg-primary text-primary-foreground hover:bg-destructive"
                     @click="handleCancelOAuth(activePlatformData.id)">
                     <ArrowPathIcon class="size-3.5 animate-spin mr-1.5" />
                     {{ t('settings.network.waitingAuth') }}
                   </Button>
                 </template>
                 <Button variant="outline" size="sm"
-                  class="h-8 text-xs rounded-full px-4 text-primary hover:bg-primary/10 hover:text-primary border-primary/20"
+                  class="h-8 text-xs rounded-full px-4 text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] hover:text-[var(--primary-strong)] border-[var(--primary-border)]"
                   @click="openDrawer(activePlatformData.id)">
                   <Cog6ToothIcon class="size-3.5 mr-1.5" />
                   {{ t('settings.network.editConfig') }}
@@ -87,20 +87,20 @@
               <template v-else>
                 <template v-if="activePlatformData.hasOAuth">
                   <Button v-if="!oauthLoading[activePlatformData.id]" variant="default" size="sm"
-                    class="h-8 text-xs rounded-full px-4 bg-primary text-background hover:bg-primary/90"
+                    class="h-8 text-xs rounded-full px-4 bg-primary text-primary-foreground hover:bg-primary/90"
                     @click="handleOAuth(activePlatformData.id)">
                     <KeyIcon class="size-3.5 mr-1.5" />
                     {{ t('settings.network.connectViaOAuth') }}
                   </Button>
                   <Button v-else variant="default" size="sm"
-                    class="h-8 text-xs rounded-full px-4 bg-primary/80 text-background hover:bg-destructive"
+                    class="h-8 text-xs rounded-full px-4 bg-primary text-primary-foreground hover:bg-destructive"
                     @click="handleCancelOAuth(activePlatformData.id)">
                     <ArrowPathIcon class="size-3.5 animate-spin mr-1.5" />
                     {{ t('settings.network.waitingAuth') }}
                   </Button>
                 </template>
                 <Button variant="outline" size="sm"
-                  class="h-8 text-xs rounded-full px-4 text-primary hover:bg-primary/10 hover:text-primary border-primary/20"
+                  class="h-8 text-xs rounded-full px-4 text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] hover:text-[var(--primary-strong)] border-[var(--primary-border)]"
                   @click="openDrawer(activePlatformData.id)">
                   <Cog6ToothIcon class="size-3.5 mr-1.5" />
                   {{ t('settings.network.connectManual') }}
@@ -116,7 +116,7 @@
                 @click="openUserProfile(activePlatformData.id, activeStatus.username)">
                 <img v-if="activeStatus?.avatarUrl" :src="activeStatus.avatarUrl"
                   class="size-5 rounded-full flex-shrink-0" alt="" />
-                <span class="font-semibold text-foreground hover:text-primary transition-colors">{{
+                <span class="font-semibold text-foreground hover:text-[var(--primary-strong)] transition-colors">{{
                   activeStatus.username
                   }}</span>
               </a>
@@ -134,12 +134,12 @@
 
       <!-- ── 其他平台 ───────────────────────────────────────────── -->
       <div v-if="otherPlatforms.length > 0" class="space-y-4">
-        <h2 class="text-sm text-primary font-medium border-l-[3px] border-primary pl-3 flex items-center h-4">
+        <h2 class="text-sm text-[var(--primary-strong)] font-medium border-l-[3px] border-primary pl-3 flex items-center h-4">
           {{ t('settings.network.otherPlatforms') }}
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <div v-for="p in otherPlatforms" :key="p.id"
-            class="group flex flex-col p-4 rounded-xl relative transition-all duration-200 bg-primary/2 border border-primary/20 hover:bg-primary/5 hover:shadow-xs hover:-translate-y-0.5">
+            class="group flex flex-col p-4 rounded-xl relative transition-all duration-200 bg-card border border-[var(--primary-border)] hover:bg-[var(--primary-soft)] hover:shadow-xs hover:-translate-y-0.5">
 
             <!-- 顶部：图标 + 名称 + 状态 -->
             <div class="flex items-start gap-3 mb-2">
@@ -191,12 +191,12 @@
             <!-- 底部操作 -->
             <div class="flex items-center justify-between mt-auto pt-2.5 border-t border-border/50">
               <button
-                class="p-1.5 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-md transition-colors cursor-pointer"
+                class="p-1.5 text-muted-foreground hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] rounded-md transition-colors cursor-pointer"
                 :title="t('settings.network.configure')" @click.stop="openDrawer(p.id)">
                 <Cog6ToothIcon class="size-3.5" />
               </button>
               <Button size="sm" variant="secondary"
-                class="h-7 text-[10px] rounded-full px-3 bg-primary/5 border border-primary/10 text-primary hover:bg-primary hover:text-white transition-colors cursor-pointer"
+                class="h-7 text-[10px] rounded-full px-3 bg-[var(--primary-soft)] border border-[var(--primary-border)] text-[var(--primary-strong)] hover:bg-primary hover:text-primary-foreground transition-colors cursor-pointer"
                 @click.stop="setActive(p.id)">
                 {{ t('settings.network.setAsActive') }}
               </Button>
@@ -327,7 +327,7 @@
                 </button>
               </div>
               <template #hint>
-                <a href="https://gridea.pro/netlify" target="_blank" class="text-primary/70 hover:text-primary text-xs">
+                <a href="https://gridea.pro/netlify" target="_blank" class="text-[var(--primary-strong)] hover:text-[var(--primary-strong)] text-xs">
                   {{ t('settings.network.netlifyGuide') }}
                 </a>
               </template>
@@ -473,18 +473,18 @@
         <!-- 抽屉底部按钮 -->
         <SheetFooter class="flex-shrink-0 px-6 py-4 border-t gap-3">
           <Button variant="outline"
-            class="h-8 text-xs justify-center rounded-full border border-primary/20 text-primary/80 hover:bg-primary/5 hover:text-primary cursor-pointer"
+            class="h-8 text-xs justify-center rounded-full border border-[var(--primary-border)] text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] hover:text-[var(--primary-strong)] cursor-pointer"
             :disabled="detectLoading" @click="testConnection">
             {{ detectLoading ? t('settings.network.checking') : t('settings.network.testConnection') }}
           </Button>
           <div class="flex-1"></div>
           <Button variant="outline"
-            class="w-18 h-8 text-xs justify-center rounded-full border border-primary/20 text-primary/80 hover:bg-primary/5 hover:text-primary cursor-pointer"
+            class="w-18 h-8 text-xs justify-center rounded-full border border-[var(--primary-border)] text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] hover:text-[var(--primary-strong)] cursor-pointer"
             @click="closeDrawer">
             {{ t('common.cancel') }}
           </Button>
           <Button variant="default"
-            class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-background hover:bg-primary/90 cursor-pointer"
+            class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
             :disabled="saveLoading" @click="saveDrawer">
             {{ saveLoading ? '...' : t('common.save') }}
           </Button>

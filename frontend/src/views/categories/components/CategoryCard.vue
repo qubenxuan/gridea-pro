@@ -1,12 +1,12 @@
 <template>
     <div
-class="group relative flex rounded-xl relative cursor-pointer transition-all duration-200 bg-primary/2 border border-primary/10 hover:bg-primary/10 hover:shadow-xs hover:-translate-y-0.5"
+class="group relative flex rounded-xl relative cursor-pointer transition-all duration-200 bg-card text-card-foreground border border-border hover:border-[var(--primary-border)] hover:bg-[var(--primary-soft)] hover:shadow-xs hover:-translate-y-0.5"
         @click="$emit('edit', category, index)">
         <div class="flex items-center pl-4 handle cursor-move">
             <Bars3Icon class="size-3 text-muted-foreground" />
         </div>
         <div class="p-4 flex-1 min-w-0">
-            <div class="text-xs font-medium text-foreground mb-1 truncate group-hover:text-primary">
+            <div class="text-xs font-medium text-card-foreground mb-1 truncate group-hover:text-[var(--primary-strong)]">
                 {{ category.name }}
             </div>
             <div v-if="category.description" class="text-xs font-normal text-muted-foreground opacity-50 truncate">
@@ -22,12 +22,12 @@ class="group relative flex rounded-xl relative cursor-pointer transition-all dur
             </div>
             <div class="hidden group-hover:flex items-center gap-2">
                 <button
-                    class="p-2 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-lg transition-colors cursor-pointer"
+                    class="p-2 text-muted-foreground hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] rounded-lg transition-colors cursor-pointer"
                     :title="t('common.edit')" @click.stop="$emit('edit', category, index)">
                     <PencilIcon class="size-3" />
                 </button>
                 <button
-                    class="p-2 text-muted-foreground hover:text-destructive hover:bg-primary/10 rounded-lg transition-colors cursor-pointer"
+                    class="p-2 text-muted-foreground hover:text-destructive hover:bg-[var(--primary-soft)] rounded-lg transition-colors cursor-pointer"
                     :title="t('common.delete')" @click.stop="$emit('delete', category.id)">
                     <TrashIcon class="size-3" />
                 </button>

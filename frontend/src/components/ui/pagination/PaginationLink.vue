@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<Props>(), {
     <Button
       :class="cn(
         'h-8 w-8 p-0 cursor-pointer text-xs',
-        !isActive && 'hover:bg-primary/10 hover:text-primary',
+        !isActive && 'hover:bg-[var(--primary-soft)] hover:text-[var(--primary-strong)]',
         props.class,
       )"
       :variant="isActive ? 'default' : 'ghost'"

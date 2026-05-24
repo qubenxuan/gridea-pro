@@ -1,10 +1,10 @@
 <template>
     <div
-class="group flex items-center justify-between h-16 p-5 rounded-xl relative cursor-pointer transition-all duration-200 bg-primary/2 border border-primary/20 hover:bg-primary/10 hover:shadow-xs hover:-translate-y-0.5"
+class="group flex items-center justify-between h-16 p-5 rounded-xl relative cursor-pointer transition-all duration-200 bg-card text-card-foreground border border-border hover:border-[var(--primary-border)] hover:bg-[var(--primary-soft)] hover:shadow-xs hover:-translate-y-0.5"
         @click="$emit('edit', tag, index)">
         <div class="flex items-center gap-2.5 flex-1 min-w-0">
             <div class="w-2 h-2 rounded-full flex-shrink-0" :style="{ backgroundColor: tag.color || '#888' }"></div>
-            <div class="text-xs font-medium text-foreground truncate">
+            <div class="text-xs font-medium text-card-foreground truncate">
                 {{ tag.name }}
             </div>
         </div>
@@ -15,12 +15,12 @@ class="group flex items-center justify-between h-16 p-5 rounded-xl relative curs
             </div>
             <div class="hidden group-hover:flex items-center gap-1">
                 <button
-                    class="p-1 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-md transition-colors cursor-pointer"
+                    class="p-1 text-muted-foreground hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] rounded-md transition-colors cursor-pointer"
                     :title="t('common.edit')" @click.stop="$emit('edit', tag, index)">
                     <PencilIcon class="size-3" />
                 </button>
                 <button
-                    class="p-1 text-muted-foreground hover:text-destructive hover:bg-primary/10 rounded-md transition-colors cursor-pointer"
+                    class="p-1 text-muted-foreground hover:text-destructive hover:bg-[var(--primary-soft)] rounded-md transition-colors cursor-pointer"
                     :title="t('common.delete')" @click.stop="$emit('delete', tag.slug || '')">
                     <TrashIcon class="size-3" />
                 </button>

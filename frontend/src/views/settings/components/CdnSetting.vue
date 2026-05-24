@@ -14,7 +14,7 @@
         <!-- 提示信息 -->
         <div class="grid grid-cols-[180px_1fr] items-start gap-4">
           <div></div>
-          <div class="rounded-md border border-primary/20 bg-primary/5 p-3 text-xs text-primary/80 max-w-sm">
+          <div class="rounded-md border border-[var(--primary-border)] bg-[var(--primary-soft)] p-3 text-xs text-[var(--primary-strong)] max-w-sm">
             {{ t('settings.cdn.notice') }}
           </div>
         </div>
@@ -83,7 +83,7 @@
             <div></div>
             <div class="text-xs text-muted-foreground">
               {{ t('settings.cdn.jsdelivrTip') }}<br>
-              <code class="text-primary/80">cdn.jsdelivr.net/gh/{{ form.githubUser || 'user' }}/{{ form.githubRepo || 'repo' }}@{{ form.githubBranch || 'main' }}/</code>
+              <code class="text-[var(--primary-strong)]">cdn.jsdelivr.net/gh/{{ form.githubUser || 'user' }}/{{ form.githubRepo || 'repo' }}@{{ form.githubBranch || 'main' }}/</code>
             </div>
           </div>
         </template>
@@ -123,7 +123,7 @@
               />
               <button
                 type="button"
-                class="text-xs text-primary/70 hover:text-primary cursor-pointer"
+                class="text-xs text-[var(--primary-strong)] hover:text-[var(--primary-strong)] cursor-pointer"
                 @click="showVarsHelp = !showVarsHelp"
               >
                 {{ t('settings.cdn.configHelp') }}
@@ -151,14 +151,14 @@
         <Button
           v-if="form.enabled && form.provider === 'jsdelivr' && form.githubToken"
           variant="outline"
-          class="h-8 text-xs justify-center rounded-full border border-primary/20 text-primary/80 hover:bg-primary/5 hover:text-primary cursor-pointer"
+          class="h-8 text-xs justify-center rounded-full border border-[var(--primary-border)] text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] hover:text-[var(--primary-strong)] cursor-pointer"
           :disabled="testLoading"
           @click="testUpload">
           {{ testLoading ? t('settings.cdn.testing') : t('settings.cdn.testUpload') }}
         </Button>
         <Button
           variant="default"
-          class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-background hover:bg-primary/90 cursor-pointer"
+          class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
           @click="submit">
           {{ t('common.save') }}
         </Button>

@@ -4,21 +4,21 @@
         <div class="flex justify-end gap-2">
             <Button
 variant="ghost" size="sm"
-                class="rounded-full text-muted-foreground hover:bg-primary/10 hover:text-foreground h-8 w-12 p-0"
+                class="rounded-full text-muted-foreground hover:bg-[var(--primary-soft)] hover:text-foreground h-8 w-12 p-0"
                 :title="$t('common.back')" @click="$emit('close')">
                 <ArrowLeftIcon class="size-3" />
             </Button>
 
             <Button
 variant="ghost" size="sm"
-                class="rounded-full text-muted-foreground hover:bg-primary/10 hover:text-foreground h-8 w-12 p-0"
+                class="rounded-full text-muted-foreground hover:bg-[var(--primary-soft)] hover:text-foreground h-8 w-12 p-0"
                 :disabled="!canSubmit" :title="$t('article.saveDraft')" @click="$emit('saveDraft')">
                 <CheckIcon class="size-3" />
             </Button>
 
             <Button
 variant="ghost" size="sm"
-                class="rounded-full text-primary hover:bg-primary/10 hover:text-primary h-8 w-12 p-0"
+                class="rounded-full text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] hover:text-[var(--primary-strong)] h-8 w-12 p-0"
                 :title="$t('article.publish')" @click="$emit('publish')">
                 <PaperAirplaneIcon class="size-3 -rotate-45" />
             </Button>
@@ -32,11 +32,11 @@ variant="ghost" size="sm"
             <PopoverTrigger as-child>
                 <Button
 variant="ghost" size="sm"
-                    class="rounded-full text-muted-foreground hover:text-foreground hover:bg-primary/10 h-8 w-8 p-0">
+                    class="rounded-full text-muted-foreground hover:text-foreground hover:bg-[var(--primary-soft)] h-8 w-8 p-0">
                     <InformationCircleIcon class="size-4" />
                 </Button>
             </PopoverTrigger>
-            <PopoverContent side="left" align="start" class="w-48 p-4 bg-primary/10 transition-colors duration-200">
+            <PopoverContent side="left" align="start" class="w-48 p-4 bg-[var(--primary-soft)] transition-colors duration-200">
                 <div class="post-stats">
                     <div class="item">
                         <h4>{{ $t('article.words') }}</h4>

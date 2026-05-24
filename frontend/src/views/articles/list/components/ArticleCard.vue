@@ -79,7 +79,7 @@ v-if="post.feature"
 
         <!-- Ribbon Badges -->
         <div v-if="post.isTop" class="absolute top-0 left-0 size-16 pointer-events-none z-10">
-            <div class="absolute top-[10px] left-[-22px] w-[90px] rotate-[-45deg] bg-primary/85 text-center text-[9px] font-semibold leading-[18px] text-primary-foreground shadow-sm">
+            <div class="absolute top-[10px] left-[-22px] w-[90px] rotate-[-45deg] bg-primary text-center text-[9px] font-semibold leading-[18px] text-primary-foreground shadow-sm">
                 {{ t('article.pinned') }}
             </div>
         </div>

@@ -32,11 +32,11 @@
             <SheetFooter class="flex-shrink-0 px-6 py-4 border-t gap-3">
                 <Button
 variant="outline"
-                    class="w-18 h-8 text-xs justify-center rounded-full border border-primary/20 text-primary/80 hover:bg-primary/5 hover:text-primary cursor-pointer"
+                    class="w-18 h-8 text-xs justify-center rounded-full border border-[var(--primary-border)] text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] cursor-pointer"
                     @click="$emit('close')">{{ t('common.cancel') }}</Button>
                 <Button
 variant="default"
-                    class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-background hover:bg-primary/90 cursor-pointer"
+                    class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
                     :disabled="!canSubmit" @click="$emit('save')">{{ t('common.save') }}</Button>
             </SheetFooter>
         </SheetContent>

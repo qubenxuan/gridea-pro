@@ -1,6 +1,6 @@
 <template>
     <div
-        class="memo-input-wrapper bg-card/50 border border-border/50 rounded-xl transition-all duration-200 ring-offset-background focus-within:ring-1 focus-within:ring-primary/10 relative overflow-visible">
+        class="memo-input-wrapper bg-card/50 border border-border/50 rounded-xl transition-all duration-200 ring-offset-background focus-within:ring-1 focus-within:ring-[var(--primary-border)] relative overflow-visible">
         <div class="px-6 py-6 relative">
             <!-- Typewriter placeholder -->
             <div v-if="!content && !isFocused" class="absolute inset-0 px-6 py-6 pointer-events-none text-sm leading-5 tracking-wider text-muted-foreground/50">
@@ -19,8 +19,8 @@ v-if="showTagSuggestions && filteredTags.length > 0"
                 :style="suggestionStyle">
                 <div
 v-for="(tag, index) in filteredTags" :key="tag.name"
-                    class="px-3 py-1.5 text-xs cursor-pointer hover:bg-primary/10 hover:text-primary transition-colors flex items-center justify-between"
-                    :class="{ 'bg-primary/10 text-primary text-xs': index === selectedTagIndex }"
+                    class="px-3 py-1.5 text-xs cursor-pointer hover:bg-[var(--primary-soft)] hover:text-[var(--primary-strong)] transition-colors flex items-center justify-between"
+                    :class="{ 'bg-[var(--primary-soft)] text-[var(--primary-strong)] text-xs': index === selectedTagIndex }"
                     @click="selectTag(tag.name)">
                     <span># {{ tag.name }}</span>
                     <span class="text-xs text-muted-foreground ml-2 opacity-50">{{ tag.count }}</span>
@@ -37,7 +37,7 @@ v-for="(tag, index) in filteredTags" :key="tag.name"
                     <PopoverTrigger as-child>
                         <button
 type="button" :title="t('memo.setPublishTime')"
-                            class="flex items-center gap-1 h-6 px-1.5 rounded-md text-xs text-muted-foreground/60 hover:text-primary hover:bg-primary/10 transition-colors cursor-pointer">
+                            class="flex items-center gap-1 h-6 px-1.5 rounded-md text-xs text-muted-foreground/60 hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] transition-colors cursor-pointer">
                             <CalendarIcon class="w-3.5 h-3.5" />
                             <span v-if="publishDateTime" class="tabular-nums">{{ publishDateTime }}</span>
                         </button>
@@ -67,7 +67,7 @@ v-if="publishDateTime" type="button" :title="t('common.clear')"
             <!-- 右下角：操作按钮 -->
             <div class="flex items-center gap-2">
                 <Button
-v-if="isEditing" variant="outline" size="sm" class="h-7 px-4 text-xs justify-center rounded-full bg-primary/5 border border-primary/20 text-primary/80 hover:bg-primary/5 hover:text-primary cursor-pointer"
+v-if="isEditing" variant="outline" size="sm" class="h-7 px-4 text-xs justify-center rounded-full bg-[var(--primary-soft)] border border-[var(--primary-border)] text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] hover:text-[var(--primary-strong)] cursor-pointer"
                     @click="handleCancel">
                     {{ t('common.cancel') }}
                 </Button>

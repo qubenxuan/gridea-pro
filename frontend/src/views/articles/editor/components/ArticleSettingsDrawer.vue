@@ -13,7 +13,7 @@
                         <Input v-model="form.fileName" class="flex-1"
                             @change="(e: any) => $emit('fileNameChange', e)" />
                         <Button variant="outline" size="icon"
-                            class="shrink-0 size-10 border-primary/20 text-primary/60 hover:text-primary hover:bg-primary/5 cursor-pointer"
+                            class="shrink-0 size-10 border-[var(--primary-border)] text-[var(--primary-strong)] hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] cursor-pointer"
                             :disabled="isGeneratingSlug"
                             :title="$t('settings.ai.generateSlug')"
                             @click="$emit('generateSlug')">
@@ -47,9 +47,9 @@
                     <div>
                         <div class="flex flex-wrap gap-2 p-2 border rounded-md bg-background min-h-[32px] mb-2">
                             <span v-for="tag in form.tags" :key="tag"
-                                class="inline-flex items-center px-2 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-xs text-primary/80">
+                                class="inline-flex items-center px-2 py-0.5 rounded-full bg-[var(--primary-soft)] border border-[var(--primary-border)] text-xs text-[var(--primary-strong)]">
                                 {{ tag }}
-                                <button class="ml-1 text-primary/60 hover:text-destructive"
+                                <button class="ml-1 text-[var(--primary-strong)] hover:text-destructive"
                                     @click="$emit('removeTag', tag)">
                                     <XMarkIcon class="size-3" />
                                 </button>
@@ -62,7 +62,7 @@
                         </div>
                         <div class="flex flex-wrap gap-2 max-h-[120px] overflow-y-auto p-1 border rounded-md">
                             <span v-for="t in availableTags" :key="t"
-                                class="cursor-pointer text-xs px-2 py-1 rounded-full bg-primary/5 hover:bg-primary/15 border border-primary/10 transition-colors select-none text-muted-foreground"
+                                class="cursor-pointer text-xs px-2 py-1 rounded-full bg-[var(--primary-soft)] hover:bg-[var(--primary-soft-hover)] border border-[var(--primary-border)] transition-colors select-none text-muted-foreground"
                                 @click="$emit('selectTag', t)">
                                 {{ t }}
                             </span>
@@ -76,7 +76,7 @@
                     <Popover>
                         <PopoverTrigger as-child>
                             <Button variant="outline" :class="cn(
-                                'w-full justify-start text-left font-normal hover:bg-primary/5 hover:text-primary border-primary/20 cursor-pointer',
+                                'w-full justify-start text-left font-normal hover:bg-[var(--primary-soft)] hover:text-[var(--primary-strong)] border-[var(--primary-border)] cursor-pointer',
                                 !dateValue && 'text-muted-foreground',
                             )">
                                 <CalendarIcon class="mr-2 h-4 w-4" />
@@ -144,12 +144,12 @@
 
             <SheetFooter class="flex-shrink-0 px-6 py-4 border-t gap-3">
                 <Button variant="outline"
-                    class="w-18 h-8 text-xs justify-center rounded-full border border-primary/20 text-primary/80 hover:bg-primary/5 hover:text-primary cursor-pointer"
+                    class="w-18 h-8 text-xs justify-center rounded-full border border-[var(--primary-border)] text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] hover:text-[var(--primary-strong)] cursor-pointer"
                     @click="openModel = false">
                     {{ $t('common.cancel') }}
                 </Button>
                 <Button variant="default"
-                    class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-background hover:bg-primary/90 cursor-pointer"
+                    class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
                     @click="$emit('confirmPublish')">
                     {{ $t('article.publish') }}
                 </Button>

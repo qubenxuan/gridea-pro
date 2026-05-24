@@ -6,7 +6,7 @@
       style="--wails-draggable: drag">
       <div class="flex-1"></div>
       <div
-        class="flex items-center justify-center w-8 h-8 rounded-full hover:bg-primary/10 cursor-pointer transition-colors text-muted-foreground hover:text-foreground"
+        class="flex items-center justify-center w-8 h-8 rounded-full hover:bg-[var(--primary-soft)] cursor-pointer transition-colors text-muted-foreground hover:text-[var(--primary-strong)]"
         :title="t('link.new')" style="--wails-draggable: no-drag" @click="openCreateSheet">
         <PlusIcon class="size-4" />
       </div>

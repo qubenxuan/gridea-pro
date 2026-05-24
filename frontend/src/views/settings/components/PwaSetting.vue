@@ -116,7 +116,7 @@
       <div class="flex justify-end items-center w-full">
         <Button
           variant="default"
-          class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-background hover:bg-primary/90 cursor-pointer"
+          class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
           @click="submit">
           {{ t('common.save') }}
         </Button>

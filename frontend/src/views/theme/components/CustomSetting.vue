@@ -8,8 +8,8 @@
             <button v-for="group in groups" :key="group" :class="[
               'w-full h-12 text-left px-3 py-2 text-sm rounded-md transition-colors',
               activeGroup === group
-                ? 'text-primary bg-primary/10 font-medium cursor-pointer'
-                : 'text-muted-foreground hover:bg-primary/10 hover:text-foreground cursor-pointer'
+                ? 'text-[var(--primary-strong)] bg-[var(--primary-soft)] font-medium cursor-pointer'
+                : 'text-muted-foreground hover:bg-[var(--primary-soft)] hover:text-foreground cursor-pointer'
             ]" @click="activeGroup = group">
               {{ group }}
             </button>
@@ -242,7 +242,7 @@
             <i class="ri-arrow-go-back-line text-lg"></i>
           </Button>
           <Button variant="default"
-            class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-background hover:bg-primary/90 cursor-pointer"
+            class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
             @click="saveThemeCustomConfig">
             {{ t('common.save') }}
           </Button>

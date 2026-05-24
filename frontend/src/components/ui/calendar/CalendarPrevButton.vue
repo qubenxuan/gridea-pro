@@ -20,7 +20,7 @@ const forwarded = useForwardProps(delegatedProps)
   <CalendarPrev
     :class="cn(
       buttonVariants({ variant: 'outline' }),
-      'h-7 w-7 bg-transparent p-0 opacity-50 hover:bg-primary/20 hover:text-primary cursor-pointer',
+      'h-7 w-7 bg-transparent p-0 opacity-50 hover:bg-[var(--primary-soft-hover)] hover:text-[var(--primary-strong)] cursor-pointer',
       props.class,
     )"
     v-bind="forwarded"

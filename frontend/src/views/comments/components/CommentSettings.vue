@@ -26,7 +26,7 @@ size="sm" class="focus-visible:ring-0 focus-visible:ring-offset-0" :checked="for
                 <SelectItem v-for="p in platforms" :key="p" :value="p">{{ p }}</SelectItem>
               </SelectContent>
             </Select>
-            <div class="ml-1 mt-2 text-xs text-primary flex items-center gap-1 cursor-pointer" @click="openDocs">
+            <div class="ml-1 mt-2 text-xs text-[var(--primary-strong)] flex items-center gap-1 cursor-pointer" @click="openDocs">
               {{ t('settings.comment.viewDocs', { platform: formState.platform }) }}
               <ArrowTopRightOnSquareIcon class="size-3" />
             </div>
@@ -66,11 +66,11 @@ v-if="formState.platform === 'Valine'"
       <SheetFooter class="flex-shrink-0 px-6 py-4 border-t gap-3">
         <Button
 variant="outline"
-          class="w-18 h-8 text-xs justify-center rounded-full border border-primary/20 text-primary/80 hover:bg-primary/5 hover:text-primary cursor-pointer"
+          class="w-18 h-8 text-xs justify-center rounded-full border border-[var(--primary-border)] text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] hover:text-[var(--primary-strong)] cursor-pointer"
           @click="onClose">{{ t('common.cancel') }}</Button>
         <Button
 variant="default"
-          class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-background hover:bg-primary/90 cursor-pointer"
+          class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
           @click="save">{{ t('common.save') }}</Button>
       </SheetFooter>
     </SheetContent>

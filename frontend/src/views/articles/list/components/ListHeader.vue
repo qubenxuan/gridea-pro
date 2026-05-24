@@ -19,7 +19,7 @@ v-if="selectedCount > 0" class="flex items-center py-1.5 px-3 bg-destructive/10 
         <div class="flex items-center gap-3" style="--wails-draggable: no-drag">
             <SearchInput v-model="searchModel" :placeholder="t('article.search')" />
             <div
-class="flex items-center justify-center w-8 h-8 rounded-full hover:bg-primary/10 cursor-pointer transition-colors text-muted-foreground hover:text-foreground"
+class="flex items-center justify-center w-8 h-8 rounded-full hover:bg-[var(--primary-soft)] cursor-pointer transition-colors text-muted-foreground hover:text-[var(--primary-strong)]"
                 :title="t('article.new')" @click="$emit('newArticle')">
                 <PlusIcon class="size-4" />
             </div>

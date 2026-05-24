@@ -39,7 +39,7 @@
             </div>
 
             <div class="footer-info">
-                {{ $t('article.writingIn') }} <a class="link hover:text-primary cursor-pointer"
+                {{ $t('article.writingIn') }} <a class="link hover:text-[var(--primary-strong)] cursor-pointer"
                     @click.prevent="openPage('https://gridea.pro')">Gridea Pro</a>
             </div>
 

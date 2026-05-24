@@ -1,15 +1,15 @@
 <template>
     <div
-        class="group flex flex-col p-4 rounded-xl relative transition-all duration-200 bg-primary/2 border border-primary/20 hover:bg-primary/10 hover:shadow-xs hover:-translate-y-0.5">
+        class="group flex flex-col p-4 rounded-xl relative transition-all duration-200 bg-card text-card-foreground border border-border hover:border-[var(--primary-border)] hover:bg-[var(--primary-soft)] hover:shadow-xs hover:-translate-y-0.5">
         <div class="flex items-start gap-3 mb-2 pr-2">
             <div
-                class="w-10 h-10 rounded-full flex-shrink-0 bg-primary/10 flex items-center justify-center overflow-hidden">
+                class="w-10 h-10 rounded-full flex-shrink-0 bg-[var(--primary-soft)] flex items-center justify-center overflow-hidden">
                 <img
 :src="link.avatar || generateAvatar(link.name || link.id)" :alt="link.name"
                     class="w-full h-full object-cover" />
             </div>
             <div class="flex-1 min-w-0">
-                <div class="text-sm font-medium text-foreground truncate mb-1">
+                <div class="text-sm font-medium text-card-foreground truncate mb-1">
                     {{ link.name }}
                 </div>
                 <div class="text-xs text-muted-foreground truncate">
@@ -31,17 +31,17 @@
             <!-- Action Buttons (Right) -->
             <div class="flex items-center gap-1">
                 <button
-                    class="p-1.5 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-md transition-colors cursor-pointer"
+                    class="p-1.5 text-muted-foreground hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] rounded-md transition-colors cursor-pointer"
                     :title="t('nav.preview')" @click.stop="$emit('preview', link.url)">
                     <EyeIcon class="size-3" />
                 </button>
                 <button
-                    class="p-1.5 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-md transition-colors cursor-pointer"
+                    class="p-1.5 text-muted-foreground hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] rounded-md transition-colors cursor-pointer"
                     :title="t('common.edit')" @click.stop="$emit('edit', link, index)">
                     <PencilIcon class="size-3" />
                 </button>
                 <button
-                    class="p-1.5 text-muted-foreground hover:text-destructive hover:bg-primary/10 rounded-md transition-colors cursor-pointer"
+                    class="p-1.5 text-muted-foreground hover:text-destructive hover:bg-[var(--primary-soft)] rounded-md transition-colors cursor-pointer"
                     :title="t('common.delete')" @click.stop="$emit('delete', link.id)">
                     <TrashIcon class="size-3" />
                 </button>

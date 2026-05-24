@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<PaginationPrevProps & { class?: HTMLAttri
 
 <template>
   <PaginationPrev v-bind="props">
-    <Button :class="cn('h-8 w-8 p-0 cursor-pointer hover:bg-primary/10', props.class)" variant="ghost" size="icon">
+    <Button :class="cn('h-8 w-8 p-0 cursor-pointer hover:bg-[var(--primary-soft)]', props.class)" variant="ghost" size="icon">
       <slot>
         <ChevronLeft class="h-3 w-3" />
       </slot>

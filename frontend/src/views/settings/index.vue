@@ -16,7 +16,7 @@ ref="lineRef" class="tab-transition absolute bottom-0 h-[2px] bg-primary rounded
               <button
 :ref="(el) => setBtnRef(el as any, index)"
                 class="tab-btn relative z-20 px-4 py-2 text-[12px] font-medium tracking-wide transition-all duration-500 cursor-pointer whitespace-nowrap outline-none"
-                :class="selected ? 'active text-primary' : 'text-muted-foreground hover:text-primary'"
+                :class="selected ? 'active text-[var(--primary-strong)]' : 'text-muted-foreground hover:text-[var(--primary-strong)]'"
                 style="--wails-draggable: no-drag">
                 <span class="text-glow">{{ t(`settings.${key}.title`) }}</span>
               </button>

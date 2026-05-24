@@ -46,7 +46,7 @@ v-for="(day, dIndex) in week.days" :key="dIndex"
                         <div
 v-if="day.isCurrentMonth" class="w-3 h-3 rounded-[2px] transition-all" :class="[
                             getCellClass(day.count),
-                            { 'ring-1 ring-primary/50 ring-offset-1 ring-offset-background': isToday(day.date) },
+                            { 'ring-1 ring-[var(--primary-border)] ring-offset-1 ring-offset-background': isToday(day.date) },
                             day.count > 0 ? 'cursor-pointer hover:opacity-80' : 'cursor-default'
                         ]" :title="`${day.date}: ${day.count} 条记录`"
                             @click="day.count > 0 && $emit('day-click', day.date)">
@@ -62,9 +62,9 @@ v-if="day.isCurrentMonth" class="w-3 h-3 rounded-[2px] transition-all" :class="[
         <div class="flex items-center justify-end gap-2 mt-4 pl-1">
             <span class="text-[10px] text-muted-foreground">{{ t('memo.less') }}</span>
             <div class="w-2.5 h-2.5 rounded-[2px] bg-secondary/80"></div>
-            <div class="w-2.5 h-2.5 rounded-[2px] bg-primary/40"></div>
-            <div class="w-2.5 h-2.5 rounded-[2px] bg-primary/60"></div>
-            <div class="w-2.5 h-2.5 rounded-[2px] bg-primary/80"></div>
+            <div class="w-2.5 h-2.5 rounded-[2px] bg-[var(--primary-soft)]"></div>
+            <div class="w-2.5 h-2.5 rounded-[2px] bg-[var(--primary-soft-hover)]"></div>
+            <div class="w-2.5 h-2.5 rounded-[2px] bg-[var(--primary-border)]"></div>
             <div class="w-2.5 h-2.5 rounded-[2px] bg-primary"></div>
             <span class="text-[10px] text-muted-foreground">{{ t('memo.more') }}</span>
         </div>
@@ -155,11 +155,11 @@ function isToday(dateStr: string) {
 
 function getCellClass(count: number): string {
     if (count === 0) return 'bg-secondary/80'
-    if (count <= 1) return 'bg-primary/40'
-    if (count <= 2) return 'bg-primary/50'
-    if (count <= 4) return 'bg-primary/60'
-    if (count <= 6) return 'bg-primary/70'
-    if (count <= 8) return 'bg-primary/80'
+    if (count <= 1) return 'bg-[var(--primary-soft)]'
+    if (count <= 2) return 'bg-[var(--primary-soft-hover)]'
+    if (count <= 4) return 'bg-[var(--primary-border)]'
+    if (count <= 6) return 'bg-[var(--primary-strong)] opacity-70'
+    if (count <= 8) return 'bg-[var(--primary-strong)] opacity-80'
     return 'bg-primary'
 }
 </script>

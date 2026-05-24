@@ -2,49 +2,49 @@
     <div class="mb-4">
         <!-- 主菜单卡片 -->
         <div
-            class="group flex rounded-xl relative cursor-pointer transition-all duration-200 bg-primary/2 border border-primary/10 hover:border-primary/20 hover:bg-primary/10 hover:shadow-xs hover:-translate-y-0.5"
+            class="group flex rounded-xl relative cursor-pointer transition-all duration-200 bg-card text-card-foreground border border-border hover:border-[var(--primary-border)] hover:bg-[var(--primary-soft)] hover:shadow-xs hover:-translate-y-0.5"
             @click="$emit('edit', menu, index)">
             <div class="flex items-center pl-4 handle cursor-move">
                 <Bars3Icon class="size-3 text-muted-foreground" />
             </div>
             <div class="p-4 flex-1">
-                <div class="text-sm font-medium text-foreground mb-2 flex items-center gap-1.5">
+                <div class="text-sm font-medium text-card-foreground mb-2 flex items-center gap-1.5">
                     {{ menu.name }}
                     <span v-if="menu.children?.length"
-                        class="text-[10px] text-muted-foreground bg-primary/10 px-1.5 py-0.5 rounded-full">
+                        class="text-[10px] bg-[var(--primary-soft)] text-[var(--primary-strong)] px-1.5 py-0.5 rounded-full">
                         {{ menu.children.length }}
                     </span>
                 </div>
                 <div class="text-xs flex items-center gap-3">
                     <div
-                        class="px-2 py-0.5 bg-primary/10 border border-primary/20 rounded-full text-[10px] text-primary/80 flex items-center">
+                        class="px-2 py-0.5 bg-[var(--primary-soft)] border border-[var(--primary-border)] rounded-full text-[10px] text-[var(--primary-strong)] flex items-center">
                         {{ menu.openType }}
                         <ArrowTopRightOnSquareIcon v-if="menu.openType === 'External'" class="w-3 h-3 ml-1" />
                     </div>
-                    <div class="text-muted-foreground truncate">
+                    <div class="text-[var(--muted-foreground)] truncate">
                         {{ menu.link || '—' }}
                     </div>
                 </div>
             </div>
             <div class="flex items-center px-4 gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                 <button
-                    class="p-2 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-lg transition-colors cursor-pointer"
+                    class="p-2 text-muted-foreground hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] rounded-lg transition-colors cursor-pointer"
                     :title="t('siteMenu.addSubmenu')" @click.stop="$emit('add-child', index)">
                     <PlusIcon class="size-3" />
                 </button>
                 <button v-if="menu.children?.length"
-                    class="p-2 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-lg transition-colors cursor-pointer"
+                    class="p-2 text-muted-foreground hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] rounded-lg transition-colors cursor-pointer"
                     @click.stop="expanded = !expanded">
                     <ChevronDownIcon class="size-3 transition-transform duration-200"
                         :class="{ 'rotate-180': expanded }" />
                 </button>
                 <button
-                    class="p-2 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-lg transition-colors cursor-pointer"
+                    class="p-2 text-muted-foreground hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] rounded-lg transition-colors cursor-pointer"
                     :title="t('common.edit')" @click.stop="$emit('edit', menu, index)">
                     <PencilIcon class="size-3" />
                 </button>
                 <button
-                    class="p-2 text-muted-foreground hover:text-destructive hover:bg-primary/10 rounded-lg transition-colors cursor-pointer"
+                    class="p-2 text-muted-foreground hover:text-destructive hover:bg-[var(--primary-soft)] rounded-lg transition-colors cursor-pointer"
                     :title="t('common.delete')" @click.stop="$emit('delete', index)">
                     <TrashIcon class="size-3" />
                 </button>
@@ -61,30 +61,30 @@
                 @change="$emit('sort-children', index)">
                 <template #item="{ element: child, index: childIdx }">
                     <div
-                        class="group flex items-center rounded-lg cursor-pointer transition-all duration-150 bg-primary/2 border border-primary/10 hover:border-primary/20 hover:bg-primary/5 mb-1"
+                        class="group flex items-center rounded-lg cursor-pointer transition-all duration-150 bg-card text-card-foreground border border-border hover:border-[var(--primary-border)] hover:bg-[var(--primary-soft)] mb-1"
                         @click="$emit('edit-child', index, menu, childIdx, child)">
                         <div class="flex items-center pl-3 pr-3 child-handle cursor-move" @click.stop>
                             <Bars3Icon class="size-3 text-muted-foreground/50" />
                         </div>
                         <div class="py-3.5 flex-1 min-w-0">
-                            <div class="text-xs font-medium text-foreground mb-1">{{ child.name }}</div>
+                            <div class="text-xs font-medium text-card-foreground mb-1">{{ child.name }}</div>
                             <div class="flex items-center gap-2">
-                                <div class="px-1.5 py-0.5 bg-primary/10 border border-primary/20 rounded-full text-[10px] text-primary/80 flex items-center">
+                                <div class="px-1.5 py-0.5 bg-[var(--primary-soft)] border border-[var(--primary-border)] rounded-full text-[10px] text-[var(--primary-strong)] flex items-center">
                                     {{ child.openType }}
                                     <ArrowTopRightOnSquareIcon v-if="child.openType === 'External'" class="w-3 h-3 ml-1" />
                                 </div>
-                                <div class="text-[10px] text-muted-foreground truncate">{{ child.link }}</div>
+                                <div class="text-[10px] text-[var(--muted-foreground)] truncate">{{ child.link }}</div>
                             </div>
                         </div>
                         <div class="flex items-center px-3 gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                             <button
-                                class="p-1.5 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-lg transition-colors cursor-pointer"
+                                class="p-1.5 text-muted-foreground hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] rounded-lg transition-colors cursor-pointer"
                                 :title="t('common.edit')"
                                 @click.stop="$emit('edit-child', index, menu, childIdx, child)">
                                 <PencilIcon class="size-3" />
                             </button>
                             <button
-                                class="p-1.5 text-muted-foreground hover:text-destructive hover:bg-primary/10 rounded-lg transition-colors cursor-pointer"
+                                class="p-1.5 text-muted-foreground hover:text-destructive hover:bg-[var(--primary-soft)] rounded-lg transition-colors cursor-pointer"
                                 :title="t('common.delete')"
                                 @click.stop="$emit('delete-child', index, childIdx)">
                                 <TrashIcon class="size-3" />

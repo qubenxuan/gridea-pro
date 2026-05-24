@@ -27,30 +27,30 @@ class="flex-shrink-0 flex justify-between items-center px-4 h-12 bg-background s
                     <!-- Stats -->
                     <div class="space-y-1">
                         <div
-class="flex items-center justify-between text-sm cursor-pointer p-2 rounded-md transition-colors hover:bg-primary/15"
+class="flex items-center justify-between text-sm cursor-pointer p-2 rounded-md transition-colors hover:bg-[var(--primary-soft-hover)]"
                             :class="[
                                 memoStore.timeFilter === 'all'
-                                    ? 'bg-primary/10 text-primary font-medium'
+                                    ? 'bg-[var(--primary-soft)] text-[var(--primary-strong)] font-medium'
                                     : 'text-muted-foreground hover:text-foreground'
                             ]" @click="memoStore.setTimeFilter('all')">
                             <span>{{ t('memo.totalMemos') }}</span>
                             <span class="text-xs font-medium opacity-80">{{ memoStore.totalMemos }}</span>
                         </div>
                         <div
-class="flex items-center justify-between text-sm cursor-pointer p-2 rounded-md transition-colors hover:bg-primary/15"
+class="flex items-center justify-between text-sm cursor-pointer p-2 rounded-md transition-colors hover:bg-[var(--primary-soft-hover)]"
                             :class="[
                                 memoStore.timeFilter === 'today'
-                                    ? 'bg-primary/10 text-primary font-medium'
+                                    ? 'bg-[var(--primary-soft)] text-[var(--primary-strong)] font-medium'
                                     : 'text-muted-foreground hover:text-foreground'
                             ]" @click="memoStore.setTimeFilter('today')">
                             <span>{{ t('memo.todayMemos') }}</span>
                             <span class="text-xs font-medium opacity-80">{{ memoStore.todayMemos }}</span>
                         </div>
                         <div
-class="flex items-center justify-between text-sm cursor-pointer p-2 rounded-md transition-colors hover:bg-primary/15"
+class="flex items-center justify-between text-sm cursor-pointer p-2 rounded-md transition-colors hover:bg-[var(--primary-soft-hover)]"
                             :class="[
                                 memoStore.timeFilter === 'month'
-                                    ? 'bg-primary/10 text-primary font-medium'
+                                    ? 'bg-[var(--primary-soft)] text-[var(--primary-strong)] font-medium'
                                     : 'text-muted-foreground hover:text-foreground'
                             ]" @click="memoStore.setTimeFilter('month')">
                             <span>{{ t('memo.monthMemos') }}</span>
@@ -74,7 +74,7 @@ v-if="memoStore.tagStats.length > 0"
                                 class="inline-flex items-center px-2.5 py-1 text-[11px] rounded-full transition-all duration-200 cursor-pointer border"
                                 :class="[
                                     memoStore.selectedTag === null
-                                        ? 'bg-primary/10 text-primary border-primary/30'
+                                        ? 'bg-[var(--primary-soft)] text-[var(--primary-strong)] border-[var(--primary-border)]'
                                         : 'bg-muted/30 text-muted-foreground border-transparent hover:bg-muted/50 hover:text-foreground'
                                 ]" @click="memoStore.setSelectedTag(null)">
                                 {{ t('memo.allTags') }}
@@ -84,7 +84,7 @@ v-for="tag in memoStore.tagStats" :key="tag.name"
                                 class="inline-flex items-center px-2.5 py-1 text-[11px] rounded-full transition-all duration-200 cursor-pointer border"
                                 :class="[
                                     memoStore.selectedTag === tag.name
-                                        ? 'bg-primary/10 text-primary border-primary/30'
+                                        ? 'bg-[var(--primary-soft)] text-[var(--primary-strong)] border-[var(--primary-border)]'
                                         : 'text-muted-foreground border-transparent hover:bg-muted/50 hover:text-foreground'
                                 ]" @click="memoStore.setSelectedTag(tag.name)">
                                 #{{ tag.name }} <span class="ml-1 opacity-60">{{ tag.count }}</span>
@@ -114,7 +114,7 @@ ref="memoInputRef" :placeholder="t('memo.inputPlaceholder')"
 v-if="memoStore.selectedDate"
                             class="mb-6 pb-4 border-b border-border flex items-center justify-between group">
                             <div class="flex items-center gap-2">
-                                <CalendarIcon class="size-4 text-primary" />
+                                <CalendarIcon class="size-4 text-[var(--primary-strong)]" />
                                 <span class="text-sm font-medium text-muted-foreground">{{ memoStore.selectedDate
                                     }}</span>
                             </div>
@@ -129,7 +129,7 @@ v-if="memoStore.selectedTag"
                             class="mb-6 pb-4 border-b border-border flex items-center justify-between group">
                             <div class="flex items-center gap-2">
                                 <template v-if="tagInputVisible">
-                                    <span class="text-sm font-medium text-primary">#</span>
+                                    <span class="text-sm font-medium text-[var(--primary-strong)]">#</span>
                                     <input
 ref="tagInputRef"
                                         v-model="editingTagName"
@@ -137,12 +137,12 @@ ref="tagInputRef"
                                 </template>
                                 <template v-else>
                                     <span class="text-sm font-medium text-muted-foreground">
-                                        <span class="text-primary"># </span>
+                                        <span class="text-[var(--primary-strong)]"># </span>
                                         {{ memoStore.selectedTag }}
                                     </span>
                                     <div class="hidden group-hover:flex items-center gap-1 ml-2">
                                         <button
-                                            class="p-1 hover:bg-primary/10 rounded-md text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                                            class="p-1 hover:bg-[var(--primary-soft)] rounded-md text-muted-foreground hover:text-[var(--primary-strong)] transition-colors cursor-pointer"
                                             :title="t('common.edit')" @click="handleEditTag">
                                             <PencilIcon class="size-3" />
                                         </button>
