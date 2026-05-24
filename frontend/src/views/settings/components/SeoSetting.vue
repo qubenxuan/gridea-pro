@@ -8,7 +8,7 @@
             'w-full h-12 text-left px-3 py-2 text-sm rounded-md transition-colors',
             activeGroup === g.key
               ? 'text-[var(--primary-strong)] bg-[var(--primary-soft)] font-medium cursor-pointer'
-              : 'text-muted-foreground hover:bg-[var(--primary-soft)] hover:text-foreground cursor-pointer'
+              : 'text-muted-foreground hover:bg-[var(--primary-soft)] hover:text-[var(--primary-strong)] cursor-pointer'
           ]" @click="activeGroup = g.key">
             {{ g.label }}
           </button>
@@ -79,7 +79,7 @@
           <div class="flex justify-end items-center w-full">
             <Button
               variant="default"
-              class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
+              class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-strong)] cursor-pointer"
               @click="submit">
               {{ t('common.save') }}
             </Button>

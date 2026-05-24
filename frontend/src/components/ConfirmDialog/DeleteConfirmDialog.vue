@@ -2,9 +2,9 @@
   <Dialog :open="open" @update:open="$emit('update:open', $event)">
     <DialogContent>
       <DialogHeader>
-        <DialogTitle class="text-lg font-bold text-destructive">{{ title || t('common.warning') }}</DialogTitle>
+        <DialogTitle class="text-lg font-bold text-[var(--destructive-strong)]">{{ title || t('common.warning') }}</DialogTitle>
       </DialogHeader>
-      <div class="flex items-center gap-3 text-destructive">
+      <div class="flex items-center gap-3 text-[var(--destructive-strong)]">
         <ExclamationTriangleIcon class="size-5" />
         <p class="text-sm text-foreground">{{ content || t('common.deleteWarning') }}</p>
         <!-- // TODO: Check i18n key -->

@@ -61,7 +61,7 @@ v-if="day.isCurrentMonth" class="w-3 h-3 rounded-[2px] transition-all" :class="[
         <!-- Legend -->
         <div class="flex items-center justify-end gap-2 mt-4 pl-1">
             <span class="text-[10px] text-muted-foreground">{{ t('memo.less') }}</span>
-            <div class="w-2.5 h-2.5 rounded-[2px] bg-secondary/80"></div>
+            <div class="w-2.5 h-2.5 rounded-[2px] bg-muted"></div>
             <div class="w-2.5 h-2.5 rounded-[2px] bg-[var(--primary-soft)]"></div>
             <div class="w-2.5 h-2.5 rounded-[2px] bg-[var(--primary-soft-hover)]"></div>
             <div class="w-2.5 h-2.5 rounded-[2px] bg-[var(--primary-border)]"></div>
@@ -154,7 +154,7 @@ function isToday(dateStr: string) {
 }
 
 function getCellClass(count: number): string {
-    if (count === 0) return 'bg-secondary/80'
+    if (count === 0) return 'bg-muted'
     if (count <= 1) return 'bg-[var(--primary-soft)]'
     if (count <= 2) return 'bg-[var(--primary-soft-hover)]'
     if (count <= 4) return 'bg-[var(--primary-border)]'

@@ -49,7 +49,7 @@
                             <span v-for="tag in form.tags" :key="tag"
                                 class="inline-flex items-center px-2 py-0.5 rounded-full bg-[var(--primary-soft)] border border-[var(--primary-border)] text-xs text-[var(--primary-strong)]">
                                 {{ tag }}
-                                <button class="ml-1 text-[var(--primary-strong)] hover:text-destructive"
+                                <button class="ml-1 text-[var(--primary-strong)] hover:text-[var(--destructive-strong)]"
                                     @click="$emit('removeTag', tag)">
                                     <XMarkIcon class="size-3" />
                                 </button>

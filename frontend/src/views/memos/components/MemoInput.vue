@@ -59,7 +59,7 @@ v-model="dateTimeDraft" placeholder="YYYY-MM-DD HH:mm:ss"
                 </Popover>
                 <button
 v-if="publishDateTime" type="button" :title="t('common.clear')"
-                    class="text-muted-foreground/40 hover:text-destructive transition-colors cursor-pointer"
+                    class="text-muted-foreground/40 hover:text-[var(--destructive-strong)] transition-colors cursor-pointer"
                     @click="clearPublishDateTime">
                     <XMarkIcon class="w-3.5 h-3.5" />
                 </button>

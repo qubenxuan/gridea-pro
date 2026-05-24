@@ -70,7 +70,7 @@ variant="outline"
           @click="onClose">{{ t('common.cancel') }}</Button>
         <Button
 variant="default"
-          class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
+          class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-strong)] cursor-pointer"
           @click="save">{{ t('common.save') }}</Button>
       </SheetFooter>
     </SheetContent>

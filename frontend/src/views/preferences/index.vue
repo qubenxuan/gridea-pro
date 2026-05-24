@@ -1,12 +1,12 @@
 <template>
   <div class="flex h-full min-h-[400px] w-full max-w-full bg-background rounded-xl overflow-hidden text-foreground">
     <!-- 左侧导航 -->
-    <div class="w-[200px] bg-secondary/20 py-4 px-2 border-r border-border">
+    <div class="w-[200px] bg-sidebar py-4 px-2 border-r border-border">
       <div class="flex flex-col gap-1">
         <div
 v-for="item in navItems" :key="item.key"
-          class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-lg cursor-pointer transition-all duration-200 text-sm text-muted-foreground hover:bg-secondary/50"
-          :class="{ 'bg-secondary text-foreground font-medium': activeTab === item.key }" @click="activeTab = item.key">
+          class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-lg cursor-pointer transition-all duration-200 text-sm text-muted-foreground hover:bg-[var(--primary-soft)]"
+          :class="{ 'bg-[var(--primary-soft)] text-[var(--primary-strong)] font-medium': activeTab === item.key }" @click="activeTab = item.key">
           <component :is="item.icon" class="size-5" />
           <span>{{ item.label }}</span>
         </div>
@@ -73,14 +73,14 @@ v-for="item in navItems" :key="item.key"
 
               <!-- 编辑按钮 -->
               <button
-                class="flex-shrink-0 text-muted-foreground/30 hover:text-foreground transition-colors cursor-pointer opacity-0 group-hover:opacity-100"
+                class="flex-shrink-0 text-muted-foreground/30 hover:text-[var(--primary-strong)] transition-colors cursor-pointer opacity-0 group-hover:opacity-100"
                 @click="handleEditSite(site)">
                 <PencilIcon class="size-3.5" />
               </button>
 
               <!-- 删除按钮 -->
               <button
-                class="flex-shrink-0 text-muted-foreground/30 hover:text-destructive transition-colors cursor-pointer opacity-0 group-hover:opacity-100"
+                class="flex-shrink-0 text-muted-foreground/30 hover:text-[var(--destructive-strong)] transition-colors cursor-pointer opacity-0 group-hover:opacity-100"
                 @click="handleDeleteSite(site)">
                 <TrashIcon class="size-3.5" />
               </button>
@@ -228,7 +228,7 @@ v-for="item in navItems" :key="item.key"
 
         <div class="flex justify-end mt-6">
           <Button variant="default"
-            class="h-8 px-5 text-xs rounded-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
+            class="h-8 px-5 text-xs rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-strong)] cursor-pointer"
             @click="saveAISetting">
             {{ t('common.save') }}
           </Button>
@@ -290,7 +290,7 @@ variant="outline"
             @click="showAddDialog = false">{{ t('common.cancel') }}</Button>
           <Button
 variant="default"
-            class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
+            class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-strong)] cursor-pointer"
             :disabled="!newSiteName || !newSitePath" @click="confirmAddSite">{{ t('common.save') }}</Button>
         </DialogFooter>
       </DialogContent>

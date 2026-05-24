@@ -30,7 +30,7 @@ class="font-semibold text-card-foreground"
                     <ChatBubbleOvalLeftEllipsisIcon class="size-3" />
                 </button>
                 <button
-                    class="p-2 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-lg transition-colors"
+                    class="p-2 text-muted-foreground hover:text-[var(--destructive-strong)] hover:bg-[var(--destructive-soft)] rounded-lg transition-colors"
                     :title="t('comment.delete')" @click="$emit('delete', comment)">
                     <TrashIcon class="size-3" />
                 </button>
@@ -71,7 +71,7 @@ v-if="isExpanded && isOverflowing"
         <!-- Reply Form -->
         <div
 v-if="isReplying"
-            class="ml-[52px] mb-4 bg-secondary/30 p-4 rounded-xl border border-border animate-fade-in-down">
+            class="ml-[52px] mb-4 bg-card p-4 rounded-xl border border-border animate-fade-in-down">
             <textarea
 v-model="replyContent" :placeholder="`${t('comment.reply')} @${comment.nickname}：`" rows="3"
                 class="w-full px-3 py-2 bg-background border border-border rounded-lg text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary resize-y min-h-[80px]"></textarea>
@@ -95,7 +95,7 @@ variant="default" class="text-xs px-4 h-8 border border-[var(--primary-border)] 
 
         <!-- Bottom: Article Reference -->
         <div
-            class="ml-[52px] bg-secondary/50 rounded-lg px-3 py-2 text-xs text-muted-foreground flex items-center gap-2 border border-border/50 hover:text-[var(--primary-strong)]">
+            class="ml-[52px] bg-card rounded-lg px-3 py-2 text-xs text-muted-foreground flex items-center gap-2 border border-border/50 hover:text-[var(--primary-strong)]">
             <DocumentTextIcon class="size-4 flex-shrink-0" />
             <a
 :href="comment.articleUrl || comment.articleId || 'javascript:void(0)'"

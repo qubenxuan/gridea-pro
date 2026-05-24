@@ -55,7 +55,7 @@
                   {{ t('settings.network.editConfig') }}
                 </Button>
                 <Button variant="ghost" size="sm"
-                  class="h-8 text-xs rounded-full px-3 text-destructive hover:text-destructive hover:bg-destructive/10"
+                  class="h-8 text-xs rounded-full px-3 text-[var(--destructive-strong)] hover:text-[var(--destructive-strong)] hover:bg-[var(--destructive-soft)]"
                   @click="handleRevoke(activePlatformData.id)">
                   {{ t('settings.network.disconnect') }}
                 </Button>
@@ -64,7 +64,7 @@
               <template v-else-if="activeStatus?.connected && activeStatus?.connectedVia === 'manual'">
                 <template v-if="activePlatformData.hasOAuth">
                   <Button v-if="!oauthLoading[activePlatformData.id]" variant="default" size="sm"
-                    class="h-8 text-xs rounded-full px-4 bg-primary text-primary-foreground hover:bg-primary/90"
+                    class="h-8 text-xs rounded-full px-4 bg-primary text-primary-foreground hover:bg-[var(--primary-strong)]"
                     @click="handleOAuth(activePlatformData.id)">
                     <KeyIcon class="size-3.5 mr-1.5" />
                     {{ t('settings.network.connectViaOAuth') }}
@@ -87,7 +87,7 @@
               <template v-else>
                 <template v-if="activePlatformData.hasOAuth">
                   <Button v-if="!oauthLoading[activePlatformData.id]" variant="default" size="sm"
-                    class="h-8 text-xs rounded-full px-4 bg-primary text-primary-foreground hover:bg-primary/90"
+                    class="h-8 text-xs rounded-full px-4 bg-primary text-primary-foreground hover:bg-[var(--primary-strong)]"
                     @click="handleOAuth(activePlatformData.id)">
                     <KeyIcon class="size-3.5 mr-1.5" />
                     {{ t('settings.network.connectViaOAuth') }}
@@ -484,7 +484,7 @@
             {{ t('common.cancel') }}
           </Button>
           <Button variant="default"
-            class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
+            class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-strong)] cursor-pointer"
             :disabled="saveLoading" @click="saveDrawer">
             {{ saveLoading ? '...' : t('common.save') }}
           </Button>

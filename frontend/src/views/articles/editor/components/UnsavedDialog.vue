@@ -4,7 +4,7 @@
             <DialogHeader>
                 <DialogTitle>{{ t('common.warning') }}</DialogTitle>
             </DialogHeader>
-            <div class="flex items-center gap-3 text-destructive">
+            <div class="flex items-center gap-3 text-[var(--destructive-strong)]">
                 <ExclamationTriangleIcon class="size-6" />
                 <p class="text-sm text-foreground">{{ t('article.unsavedWarning') }}</p>
             </div>

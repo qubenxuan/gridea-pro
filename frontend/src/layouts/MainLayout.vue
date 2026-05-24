@@ -64,8 +64,8 @@ variant="outline"
 variant="default"
           class="w-36 h-8 text-xs justify-center rounded-full cursor-pointer"
           :class="publishLoading
-            ? 'bg-destructive text-destructive-foreground hover:bg-destructive/90'
-            : 'bg-primary text-primary-foreground hover:bg-primary/90'"
+            ? 'bg-destructive text-destructive-foreground hover:bg-[var(--destructive-strong)]'
+            : 'bg-primary text-primary-foreground hover:bg-[var(--primary-strong)]'"
           @click="publishLoading ? cancelPublish() : publish()">
           <template v-if="publishLoading && !cancelling">
             <svg
@@ -156,7 +156,7 @@ fill-rule="evenodd" clip-rule="evenodd"
               </span>
               <span
                 v-else-if="deployOutcome === 'failed'"
-                class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-destructive/10 text-destructive text-[11px] font-medium">
+                class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[var(--destructive-soft)] text-[var(--destructive-strong)] text-[11px] font-medium">
                 <span class="size-1.5 rounded-full bg-destructive"></span>
                 部署失败
               </span>
@@ -193,7 +193,7 @@ fill-rule="evenodd" clip-rule="evenodd"
             <span class="text-green-600 dark:text-green-400">
               ✓ 成功 {{ deployProgress.done - deployProgress.failed }}
             </span>
-            <span class="text-destructive">✗ 失败 {{ deployProgress.failed }}</span>
+            <span class="text-[var(--destructive-strong)]">✗ 失败 {{ deployProgress.failed }}</span>
           </div>
         </div>
 
@@ -288,7 +288,7 @@ fill-rule="evenodd" clip-rule="evenodd"
             <CheckCircleIcon class="size-4" />
             <span>{{ t('update.readyToRestart') }}</span>
           </div>
-          <div v-else-if="updateState === 'error'" class="flex items-start gap-2 text-xs text-destructive">
+          <div v-else-if="updateState === 'error'" class="flex items-start gap-2 text-xs text-[var(--destructive-strong)]">
             <ExclamationCircleIcon class="size-4 flex-shrink-0 mt-0.5" />
             <div class="space-y-0.5">
               <div class="font-medium">{{ t(`update.error.${updateErrorKind}.title`) }}</div>
@@ -326,7 +326,7 @@ fill-rule="evenodd" clip-rule="evenodd"
               </Button>
               <Button
                 variant="default"
-                class="w-24 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
+                class="w-24 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-strong)] cursor-pointer"
                 @click="startUpdate">
                 {{ t('update.install') }}
               </Button>
@@ -350,7 +350,7 @@ fill-rule="evenodd" clip-rule="evenodd"
               </Button>
               <Button
                 variant="default"
-                class="w-24 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
+                class="w-24 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-strong)] cursor-pointer"
                 @click="applyUpdate">
                 {{ t('update.restart') }}
               </Button>
@@ -365,7 +365,7 @@ fill-rule="evenodd" clip-rule="evenodd"
               </Button>
               <Button
                 variant="default"
-                class="w-24 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
+                class="w-24 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-strong)] cursor-pointer"
                 @click="startUpdate">
                 {{ t('update.retry') }}
               </Button>
@@ -559,7 +559,7 @@ const logLineIcon = (entry: string): string => {
 }
 
 const logLineClass = (entry: string): string => {
-  if (/^上传\s.+\s失败/.test(entry) || /^\s*✗\s/.test(entry) || /❌/.test(entry)) return 'text-destructive'
+  if (/^上传\s.+\s失败/.test(entry) || /^\s*✗\s/.test(entry) || /❌/.test(entry)) return 'text-[var(--destructive-strong)]'
   if (/^✅/.test(entry) || /部署成功|上传完成，共上传/.test(entry)) return 'text-green-600 dark:text-green-400'
   if (/⚠️|警告/.test(entry)) return 'text-amber-600 dark:text-amber-400'
   return 'text-muted-foreground'

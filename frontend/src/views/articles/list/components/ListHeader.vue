@@ -9,7 +9,7 @@ enter-active-class="transition ease-out duration-200"
                 leave-active-class="transition ease-in duration-150" leave-from-class="opacity-100 translate-x-0"
                 leave-to-class="opacity-0 translate-x-[-10px]">
                 <div
-v-if="selectedCount > 0" class="flex items-center py-1.5 px-3 bg-destructive/10 text-destructive cursor-pointer hover:bg-destructive/20 rounded-md text-xs transition-colors border border-destructive/20"
+v-if="selectedCount > 0" class="flex items-center py-1.5 px-3 bg-[var(--destructive-soft)] text-[var(--destructive-strong)] cursor-pointer hover:bg-[var(--destructive-soft)] rounded-md text-xs transition-colors border border-[var(--destructive-border)]"
                     @click="$emit('deleteSelected')">
                     <TrashIcon class="size-3 mr-2 mb-0.5" />
                     <span>{{ t('common.delete') }} {{ selectedCount }}</span>

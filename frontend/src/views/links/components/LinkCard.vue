@@ -41,7 +41,7 @@
                     <PencilIcon class="size-3" />
                 </button>
                 <button
-                    class="p-1.5 text-muted-foreground hover:text-destructive hover:bg-[var(--primary-soft)] rounded-md transition-colors cursor-pointer"
+                    class="p-1.5 text-muted-foreground hover:text-[var(--destructive-strong)] hover:bg-[var(--primary-soft)] rounded-md transition-colors cursor-pointer"
                     :title="t('common.delete')" @click.stop="$emit('delete', link.id)">
                     <TrashIcon class="size-3" />
                 </button>

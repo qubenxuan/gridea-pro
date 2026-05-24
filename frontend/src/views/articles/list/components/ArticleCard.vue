@@ -53,17 +53,17 @@ class="w-1.5 h-1.5 rounded-full mr-1.5"
             <!-- Actions -->
             <div class="absolute right-4 top-1/2 -translate-y-1/2 hidden group-hover:flex items-center gap-2 p-1 z-20">
                 <div
-                    class="p-1.5 hover:bg-[var(--primary-soft)] rounded-md cursor-pointer text-muted-foreground hover:text-foreground transition-colors"
+                    class="p-1.5 hover:bg-[var(--primary-soft)] rounded-md cursor-pointer text-muted-foreground hover:text-[var(--primary-strong)] transition-colors"
                     :title="t('nav.preview')" @click.stop="$emit('preview', post)">
                     <EyeIcon class="size-3" />
                 </div>
                 <div
-                    class="p-1.5 hover:bg-[var(--primary-soft)] rounded-md cursor-pointer text-muted-foreground hover:text-foreground transition-colors"
+                    class="p-1.5 hover:bg-[var(--primary-soft)] rounded-md cursor-pointer text-muted-foreground hover:text-[var(--primary-strong)] transition-colors"
                     :title="t('common.edit')" @click.stop="$emit('edit', post)">
                     <PencilIcon class="size-3" />
                 </div>
                 <div
-class="p-1.5 hover:bg-destructive/10 hover:text-destructive rounded-md cursor-pointer text-muted-foreground transition-colors"
+class="p-1.5 hover:bg-[var(--destructive-soft)] hover:text-[var(--destructive-strong)] rounded-md cursor-pointer text-muted-foreground transition-colors"
                     :title="t('common.delete')" @click.stop="$emit('delete', post)">
                     <TrashIcon class="size-3" />
                 </div>

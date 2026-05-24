@@ -27,7 +27,7 @@ class="memo-content text-sm text-foreground leading-7 tracking-wider mb-3 whites
                         <PencilIcon class="size-3.5" />
                     </button>
                     <button
-                        class="p-1.5 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-md transition-colors cursor-pointer"
+                        class="p-1.5 text-muted-foreground hover:text-[var(--destructive-strong)] hover:bg-[var(--destructive-soft)] rounded-md transition-colors cursor-pointer"
                         :title="t('common.delete')" @click="$emit('delete', memo.id)">
                         <TrashIcon class="size-3.5" />
                     </button>

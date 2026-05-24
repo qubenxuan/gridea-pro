@@ -101,7 +101,7 @@
               </div>
               <button
                 v-if="form.customIcon"
-                class="text-xs text-muted-foreground hover:text-destructive cursor-pointer transition-colors mb-1"
+                class="text-xs text-muted-foreground hover:text-[var(--destructive-strong)] cursor-pointer transition-colors mb-1"
                 @click="removeIcon">
                 {{ t('settings.pwa.useAvatar') }}
               </button>
@@ -116,7 +116,7 @@
       <div class="flex justify-end items-center w-full">
         <Button
           variant="default"
-          class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
+          class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-strong)] cursor-pointer"
           @click="submit">
           {{ t('common.save') }}
         </Button>

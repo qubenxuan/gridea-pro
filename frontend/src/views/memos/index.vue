@@ -31,7 +31,7 @@ class="flex items-center justify-between text-sm cursor-pointer p-2 rounded-md t
                             :class="[
                                 memoStore.timeFilter === 'all'
                                     ? 'bg-[var(--primary-soft)] text-[var(--primary-strong)] font-medium'
-                                    : 'text-muted-foreground hover:text-foreground'
+                                    : 'text-muted-foreground hover:text-[var(--primary-strong)]'
                             ]" @click="memoStore.setTimeFilter('all')">
                             <span>{{ t('memo.totalMemos') }}</span>
                             <span class="text-xs font-medium opacity-80">{{ memoStore.totalMemos }}</span>
@@ -41,7 +41,7 @@ class="flex items-center justify-between text-sm cursor-pointer p-2 rounded-md t
                             :class="[
                                 memoStore.timeFilter === 'today'
                                     ? 'bg-[var(--primary-soft)] text-[var(--primary-strong)] font-medium'
-                                    : 'text-muted-foreground hover:text-foreground'
+                                    : 'text-muted-foreground hover:text-[var(--primary-strong)]'
                             ]" @click="memoStore.setTimeFilter('today')">
                             <span>{{ t('memo.todayMemos') }}</span>
                             <span class="text-xs font-medium opacity-80">{{ memoStore.todayMemos }}</span>
@@ -51,7 +51,7 @@ class="flex items-center justify-between text-sm cursor-pointer p-2 rounded-md t
                             :class="[
                                 memoStore.timeFilter === 'month'
                                     ? 'bg-[var(--primary-soft)] text-[var(--primary-strong)] font-medium'
-                                    : 'text-muted-foreground hover:text-foreground'
+                                    : 'text-muted-foreground hover:text-[var(--primary-strong)]'
                             ]" @click="memoStore.setTimeFilter('month')">
                             <span>{{ t('memo.monthMemos') }}</span>
                             <span class="text-xs font-medium opacity-80">{{ memoStore.monthMemos }}</span>
@@ -75,7 +75,7 @@ v-if="memoStore.tagStats.length > 0"
                                 :class="[
                                     memoStore.selectedTag === null
                                         ? 'bg-[var(--primary-soft)] text-[var(--primary-strong)] border-[var(--primary-border)]'
-                                        : 'bg-muted/30 text-muted-foreground border-transparent hover:bg-muted/50 hover:text-foreground'
+                                        : 'bg-card text-muted-foreground border-transparent hover:bg-[var(--primary-soft)] hover:text-[var(--primary-strong)]'
                                 ]" @click="memoStore.setSelectedTag(null)">
                                 {{ t('memo.allTags') }}
                             </button>
@@ -85,7 +85,7 @@ v-for="tag in memoStore.tagStats" :key="tag.name"
                                 :class="[
                                     memoStore.selectedTag === tag.name
                                         ? 'bg-[var(--primary-soft)] text-[var(--primary-strong)] border-[var(--primary-border)]'
-                                        : 'text-muted-foreground border-transparent hover:bg-muted/50 hover:text-foreground'
+                                        : 'text-muted-foreground border-transparent hover:bg-[var(--primary-soft)] hover:text-[var(--primary-strong)]'
                                 ]" @click="memoStore.setSelectedTag(tag.name)">
                                 #{{ tag.name }} <span class="ml-1 opacity-60">{{ tag.count }}</span>
                             </button>
@@ -147,7 +147,7 @@ ref="tagInputRef"
                                             <PencilIcon class="size-3" />
                                         </button>
                                         <button
-                                            class="p-1 hover:bg-destructive/10 rounded-md text-muted-foreground hover:text-destructive transition-colors cursor-pointer"
+                                            class="p-1 hover:bg-[var(--destructive-soft)] rounded-md text-muted-foreground hover:text-[var(--destructive-strong)] transition-colors cursor-pointer"
                                             :title="t('common.delete')" @click="handleDeleteTag">
                                             <TrashIcon class="size-3" />
                                         </button>

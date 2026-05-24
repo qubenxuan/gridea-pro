@@ -9,7 +9,7 @@
               'w-full h-12 text-left px-3 py-2 text-sm rounded-md transition-colors',
               activeGroup === group
                 ? 'text-[var(--primary-strong)] bg-[var(--primary-soft)] font-medium cursor-pointer'
-                : 'text-muted-foreground hover:bg-[var(--primary-soft)] hover:text-foreground cursor-pointer'
+                : 'text-muted-foreground hover:bg-[var(--primary-soft)] hover:text-[var(--primary-strong)] cursor-pointer'
             ]" @click="activeGroup = group">
               {{ group }}
             </button>
@@ -157,7 +157,7 @@
                         <i class="ri-add-line"></i>
                       </Button>
                       <Button size="icon" variant="ghost"
-                        class="h-6 w-6 text-destructive hover:text-destructive hover:bg-destructive/10"
+                        class="h-6 w-6 text-[var(--destructive-strong)] hover:text-[var(--destructive-strong)] hover:bg-[var(--destructive-soft)]"
                         @click="deleteConfigItem(form[item.name], Number(configItemIndex))">
                         <i class="ri-subtract-line"></i>
                       </Button>
@@ -242,7 +242,7 @@
             <i class="ri-arrow-go-back-line text-lg"></i>
           </Button>
           <Button variant="default"
-            class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
+            class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-strong)] cursor-pointer"
             @click="saveThemeCustomConfig">
             {{ t('common.save') }}
           </Button>

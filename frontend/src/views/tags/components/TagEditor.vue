@@ -8,11 +8,11 @@
             <div class="flex-1 overflow-y-auto px-6 py-6 space-y-6">
                 <div class="space-y-4">
                     <div>
-                        <Label class="mb-1.5 block">{{ t('tag.name') }} <span class="text-destructive">*</span></Label>
+                        <Label class="mb-1.5 block">{{ t('tag.name') }} <span class="text-[var(--destructive-strong)]">*</span></Label>
                         <Input :model-value="form.name" @update:model-value="$emit('name-change', $event as string)" />
                     </div>
                     <div>
-                        <Label class="mb-1.5 block">{{ t('tag.slug') }} <span class="text-destructive">*</span></Label>
+                        <Label class="mb-1.5 block">{{ t('tag.slug') }} <span class="text-[var(--destructive-strong)]">*</span></Label>
                         <div class="relative">
                             <span class="absolute left-3 top-2.5 text-muted-foreground text-sm">/tag/</span>
                             <Input
@@ -52,7 +52,7 @@ variant="outline"
                 </Button>
                 <Button
 variant="default"
-                    class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
+                    class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-strong)] cursor-pointer"
                     :disabled="!canSubmit" @click="$emit('save')">
                     {{ t('common.save') }}
                 </Button>

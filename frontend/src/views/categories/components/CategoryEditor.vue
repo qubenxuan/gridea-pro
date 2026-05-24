@@ -9,12 +9,12 @@
                 <div class="space-y-4">
                     <div>
                         <Label class="mb-1 block">{{ t('category.name') }} <span
-                                class="text-destructive">*</span></Label>
+                                class="text-[var(--destructive-strong)]">*</span></Label>
                         <Input :model-value="form.name" @input="$emit('name-change', $event)" />
                     </div>
                     <div>
                         <Label class="mb-1 block">{{ t('category.url') }} <span
-                                class="text-destructive">*</span></Label>
+                                class="text-[var(--destructive-strong)]">*</span></Label>
                         <div class="relative">
                             <span class="absolute left-3 top-2.5 text-muted-foreground text-sm">/category/</span>
                             <Input :model-value="form.slug" class="pl-22" @input="$emit('slug-change', $event)" />
@@ -33,7 +33,7 @@ variant="outline"
                     @click="$emit('close')">{{ t('common.cancel') }}</Button>
                 <Button
 variant="default"
-                    class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
+                    class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-strong)] cursor-pointer"
                     :disabled="!canSubmit" @click="$emit('save')">{{ t('common.save') }}</Button>
             </SheetFooter>
         </SheetContent>
