@@ -1,0 +1,158 @@
+name: Build macOS ARM64
+
+on:
+  workflow_dispatch:
+
+env:
+  NODE_OPTIONS: "--max-old-space-size=4096"
+  APP_NAME: "Gridea Pro"
+  BIN_NAME: "Gridea Pro"
+  BIN_SLUG: "gridea-pro"
+  RELEASE_PREFIX: "Gridea.Pro"
+  VERSION: "v0.0.0-dev"
+
+permissions:
+  contents: read
+
+jobs:
+  build-macos-arm64:
+    runs-on: macos-latest
+
+    env:
+      GH_OAUTH_CLIENT_ID: ${{ secrets.GH_OAUTH_CLIENT_ID }}
+      GH_OAUTH_CLIENT_SECRET: ${{ secrets.GH_OAUTH_CLIENT_SECRET }}
+      GITEE_CLIENT_ID: ${{ secrets.GITEE_CLIENT_ID }}
+      GITEE_CLIENT_SECRET: ${{ secrets.GITEE_CLIENT_SECRET }}
+      NETLIFY_CLIENT_ID: ${{ secrets.NETLIFY_CLIENT_ID }}
+      NETLIFY_CLIENT_SECRET: ${{ secrets.NETLIFY_CLIENT_SECRET }}
+      VERCEL_CLIENT_ID: ${{ secrets.VERCEL_CLIENT_ID }}
+      VERCEL_CLIENT_SECRET: ${{ secrets.VERCEL_CLIENT_SECRET }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: "go.mod"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Wails CLI
+        run: go install github.com/wailsapp/wails/v2/cmd/wails@v2.12.0
+
+      - name: Patch wails.json productVersion
+        shell: bash
+        run: |
+          VER="${VERSION#v}"
+          node -e "
+            const fs = require('fs');
+            const j = JSON.parse(fs.readFileSync('wails.json', 'utf8'));
+            j.info.productVersion = '$VER';
+            fs.writeFileSync('wails.json', JSON.stringify(j, null, 4) + '\n');
+            console.log('wails.json productVersion -> $VER');
+          "
+
+      - name: Build macOS arm64
+        shell: bash
+        run: |
+          LDFLAGS="-X main.Version=${VERSION#v}"
+          LDFLAGS="${LDFLAGS} -X gridea-pro/backend/internal/service/oauth.githubClientID=${GH_OAUTH_CLIENT_ID}"
+          LDFLAGS="${LDFLAGS} -X gridea-pro/backend/internal/service/oauth.githubClientSecret=${GH_OAUTH_CLIENT_SECRET}"
+          LDFLAGS="${LDFLAGS} -X gridea-pro/backend/internal/service/oauth.giteeClientID=${GITEE_CLIENT_ID}"
+          LDFLAGS="${LDFLAGS} -X gridea-pro/backend/internal/service/oauth.giteeClientSecret=${GITEE_CLIENT_SECRET}"
+          LDFLAGS="${LDFLAGS} -X gridea-pro/backend/internal/service/oauth.netlifyClientID=${NETLIFY_CLIENT_ID}"
+          LDFLAGS="${LDFLAGS} -X gridea-pro/backend/internal/service/oauth.netlifyClientSecret=${NETLIFY_CLIENT_SECRET}"
+          LDFLAGS="${LDFLAGS} -X gridea-pro/backend/internal/service/oauth.vercelClientID=${VERCEL_CLIENT_ID}"
+          LDFLAGS="${LDFLAGS} -X gridea-pro/backend/internal/service/oauth.vercelClientSecret=${VERCEL_CLIENT_SECRET}"
+
+          wails build -platform darwin/arm64 -clean -trimpath -ldflags "${LDFLAGS}"
+
+      - name: Verify Monaco color lookbehind patched in dist
+        shell: bash
+        run: |
+          echo "=== verify frontend/dist ==="
+
+          if [ ! -d frontend/dist ]; then
+            echo "frontend/dist not found"
+            exit 1
+          fi
+
+          if grep -RInF "(?<=['\"\\s])" frontend/dist \
+            --include='*.js' \
+            --include='*.mjs' \
+            --include='*.cjs'; then
+            echo ""
+            echo "ERROR: Monaco color RegExp lookbehind still exists in frontend/dist."
+            echo "The old WebKit compatibility patch did not fully work."
+            exit 1
+          fi
+
+          echo "OK: Monaco color RegExp lookbehind has been patched."
+
+      - name: Build MCP server
+        env:
+          GOOS: darwin
+          GOARCH: arm64
+          CGO_ENABLED: 1
+        run: |
+          go build -ldflags="-s -w -X main.Version=${VERSION}" \
+            -o "build/bin/${BIN_NAME}.app/Contents/MacOS/${BIN_SLUG}-mcp" \
+            ./backend/cmd/mcp
+
+      - name: Install create-dmg + librsvg
+        run: brew install create-dmg librsvg
+
+      - name: Generate DMG background
+        run: bash build/darwin/dmg/create-background.sh build/bin/dmg-background.tiff
+
+      - name: Create DMG
+        shell: bash
+        run: |
+          cd build/bin
+
+          rm -rf dmg-src
+          mkdir -p dmg-src
+          cp -R "${BIN_NAME}.app" dmg-src/
+
+          OUTPUT="${RELEASE_PREFIX}_${VERSION}_macos_arm64.dmg"
+          rm -f "$OUTPUT"
+
+          create-dmg \
+            --volname "${APP_NAME}" \
+            --background "dmg-background.tiff" \
+            --window-pos 200 120 \
+            --window-size 600 400 \
+            --icon-size 110 \
+            --text-size 13 \
+            --icon "${BIN_NAME}.app" 150 240 \
+            --hide-extension "${BIN_NAME}.app" \
+            --app-drop-link 450 240 \
+            --no-internet-enable \
+            "$OUTPUT" \
+            dmg-src/
+
+          rm -rf dmg-src dmg-background.tiff
+
+      - name: Create ZIP
+        shell: bash
+        run: |
+          cd build/bin
+          OUTPUT="${RELEASE_PREFIX}_${VERSION}_macos_arm64.zip"
+          rm -f "$OUTPUT"
+
+          ditto -c -k --sequesterRsrc --keepParent \
+            "${BIN_NAME}.app" "$OUTPUT"
+
+          ls -lh "$OUTPUT"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: macos-build-arm64
+          path: |
+            build/bin/*.dmg
+            build/bin/*.zip
+          if-no-files-found: error
