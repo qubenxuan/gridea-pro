@@ -13,7 +13,7 @@
       <div
         v-for="toast in toasts"
         :key="toast.id"
-        class="pointer-events-auto flex w-auto min-w-[300px] max-w-md items-center gap-3 rounded-xl border border-white/20 bg-white/70 px-4 py-3 shadow-2xl backdrop-blur-md dark:border-white/10 dark:bg-black/70"
+        class="pointer-events-auto flex w-auto min-w-[300px] max-w-md items-center gap-3 rounded-xl border border-border bg-card text-card-foreground px-4 py-3 shadow-2xl"
         @mouseenter="pauseToast(toast.id)"
         @mouseleave="resumeToast(toast.id)"
       >
@@ -27,14 +27,14 @@
         </div>
 
         <!-- Content -->
-        <div class="flex-1 text-sm font-medium text-gray-800 dark:text-gray-100">
+        <div class="flex-1 text-sm font-medium text-card-foreground">
           {{ toast.message }}
         </div>
 
         <!-- Close Button -->
         <button
           @click="removeToast(toast.id)"
-          class="flex-shrink-0 rounded-lg p-1 text-gray-400 hover:bg-black/5 hover:text-gray-600 dark:hover:bg-white/10 dark:hover:text-gray-300 transition-colors"
+          class="flex-shrink-0 rounded-lg p-1 text-muted-foreground hover:bg-[var(--primary-soft)] hover:text-[var(--primary-strong)] transition-colors"
         >
           <XMarkIcon class="h-4 w-4" />
         </button>

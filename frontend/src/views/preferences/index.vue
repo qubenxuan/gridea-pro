@@ -59,28 +59,28 @@ v-for="item in navItems" :key="item.key"
               class="group flex w-full min-w-0 max-w-full items-center gap-3 px-4 py-3 mb-2 rounded-lg border transition-all duration-200 overflow-hidden"
               :class="site.active
                 ? 'bg-[var(--primary-soft)] border-[var(--primary-border)]'
-                : 'bg-card/50 border-border/50 hover:bg-card hover:border-[var(--primary-border)]'">
+                : 'bg-card border-border hover:bg-[var(--primary-soft)] hover:border-[var(--primary-border)]'">
               <!-- 拖拽手柄 -->
-              <div class="handle flex-shrink-0 cursor-move text-muted-foreground/40 hover:text-muted-foreground">
+              <div class="handle flex-shrink-0 cursor-move text-muted-foreground opacity-60 hover:opacity-100">
                 <Bars3Icon class="size-3.5" />
               </div>
 
               <!-- 站点信息 -->
               <div class="flex-1 min-w-0 overflow-hidden">
                 <div class="text-sm font-medium text-foreground truncate block w-full">{{ site.name }}</div>
-                <div class="text-xs text-muted-foreground/60 truncate mt-0.5 block w-full">{{ site.path }}</div>
+                <div class="text-xs text-muted-foreground truncate mt-0.5 block w-full">{{ site.path }}</div>
               </div>
 
               <!-- 编辑按钮 -->
               <button
-                class="flex-shrink-0 text-muted-foreground/30 hover:text-[var(--primary-strong)] transition-colors cursor-pointer opacity-0 group-hover:opacity-100"
+                class="flex-shrink-0 text-muted-foreground hover:text-[var(--primary-strong)] transition-colors cursor-pointer opacity-0 group-hover:opacity-100"
                 @click="handleEditSite(site)">
                 <PencilIcon class="size-3.5" />
               </button>
 
               <!-- 删除按钮 -->
               <button
-                class="flex-shrink-0 text-muted-foreground/30 hover:text-[var(--destructive-strong)] transition-colors cursor-pointer opacity-0 group-hover:opacity-100"
+                class="flex-shrink-0 text-muted-foreground hover:text-[var(--destructive-strong)] transition-colors cursor-pointer opacity-0 group-hover:opacity-100"
                 @click="handleDeleteSite(site)">
                 <TrashIcon class="size-3.5" />
               </button>
@@ -121,7 +121,7 @@ v-for="item in navItems" :key="item.key"
               </div>
               <div v-if="builtInModels.length > 0" class="text-xs text-muted-foreground mt-1.5">
                 {{ t('settings.ai.builtInModelsLabel') }}
-                <code class="px-1 py-0.5 mx-0.5 rounded bg-muted text-foreground/80" v-for="m in builtInModels"
+                <code class="px-1 py-0.5 mx-0.5 rounded bg-muted text-foreground" v-for="m in builtInModels"
                   :key="m">{{ m }}</code>
               </div>
               <div class="text-xs text-muted-foreground mt-1.5">
@@ -228,7 +228,7 @@ v-for="item in navItems" :key="item.key"
 
         <div class="flex justify-end mt-6">
           <Button variant="default"
-            class="h-8 px-5 text-xs rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-strong)] cursor-pointer"
+            class="h-8 px-5 text-xs rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-solid-hover)] cursor-pointer"
             @click="saveAISetting">
             {{ t('common.save') }}
           </Button>
@@ -290,7 +290,7 @@ variant="outline"
             @click="showAddDialog = false">{{ t('common.cancel') }}</Button>
           <Button
 variant="default"
-            class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-strong)] cursor-pointer"
+            class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-solid-hover)] cursor-pointer"
             :disabled="!newSiteName || !newSitePath" @click="confirmAddSite">{{ t('common.save') }}</Button>
         </DialogFooter>
       </DialogContent>

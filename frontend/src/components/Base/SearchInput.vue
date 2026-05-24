@@ -2,13 +2,14 @@
     <div class="flex items-center">
         <div v-if="isVisible" class="relative">
             <input
-ref="inputRef"
+                ref="inputRef"
                 v-model="inputValue"
-                class="w-[200px] h-8 pl-8 text-xs rounded-full bg-muted/50 border-none focus:ring-1 focus:ring-[var(--primary-border)] outline-none transition-all placeholder:text-muted-foreground" :placeholder="placeholder" autofocus @blur="handleBlur" />
+                class="w-[200px] h-8 pl-8 text-xs rounded-full bg-card text-card-foreground border border-border focus:ring-1 focus:ring-[var(--primary-border)] outline-none transition-all placeholder:text-muted-foreground"
+                :placeholder="placeholder" autofocus @blur="handleBlur" />
             <MagnifyingGlassIcon class="absolute left-2.5 top-2 size-4 text-muted-foreground pointer-events-none" />
         </div>
         <div
-v-else
+            v-else
             class="flex items-center justify-center w-8 h-8 rounded-full hover:bg-[var(--primary-soft)] cursor-pointer transition-colors text-muted-foreground hover:text-[var(--primary-strong)]"
             :title="placeholder" @click="showInput">
             <MagnifyingGlassIcon class="size-4" />

@@ -91,7 +91,7 @@
           <div class="max-w-sm">
             <div class="flex items-end gap-3">
               <div
-                class="w-24 h-24 border-1 border-dashed border-input rounded-lg flex items-center justify-center cursor-pointer hover:border-primary transition-colors relative overflow-hidden bg-background"
+                class="w-24 h-24 border-1 border-dashed border-input rounded-lg flex items-center justify-center cursor-pointer hover:border-[var(--primary-border)] transition-colors relative overflow-hidden bg-background"
                 @click="pickIcon">
                 <img v-if="iconPath" :src="iconPath" class="w-full h-full object-cover" />
                 <div v-else class="flex flex-col items-center text-muted-foreground">
@@ -116,7 +116,7 @@
       <div class="flex justify-end items-center w-full">
         <Button
           variant="default"
-          class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-strong)] cursor-pointer"
+          class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-solid-hover)] cursor-pointer"
           @click="submit">
           {{ t('common.save') }}
         </Button>

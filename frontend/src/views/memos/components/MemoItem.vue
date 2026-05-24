@@ -1,6 +1,6 @@
 <template>
     <div
-        class="memo-item group p-4 rounded-xl border border-border/50 bg-card/50 hover:bg-[var(--primary-soft)] hover:shadow-xs hover:-translate-y-0.5 transition-all duration-200">
+        class="memo-item group p-4 rounded-xl border border-border bg-card hover:bg-[var(--primary-soft)] hover:shadow-xs hover:-translate-y-0.5 transition-all duration-200">
         <!-- Viewing Mode -->
         <div v-if="!isEditing">
             <div

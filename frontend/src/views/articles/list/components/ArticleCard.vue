@@ -21,7 +21,7 @@
                         <div class="flex items-center text-[10px]">
                             <div
 class="w-1.5 h-1.5 rounded-full mr-1.5"
-                                :class="post.published ? 'bg-green-500' : 'bg-gray-300'"></div>
+                                :class="post.published ? 'bg-[var(--success-solid)]' : 'bg-muted-foreground'"></div>
                             {{ post.published ? t('article.published') : t('article.draft') }}
                         </div>
                         <div class="w-px h-3 bg-[var(--primary-border)]"></div>

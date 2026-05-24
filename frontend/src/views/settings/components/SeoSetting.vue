@@ -52,7 +52,7 @@
               <Input v-model="form[field.name]" :placeholder="field.placeholder" class="max-w-sm" />
               <div class="flex items-start gap-4">
                 <div
-                  class="w-24 h-24 border border-dashed border-input rounded-lg flex items-center justify-center cursor-pointer hover:border-primary transition-colors relative overflow-hidden bg-background shrink-0"
+                  class="w-24 h-24 border border-dashed border-input rounded-lg flex items-center justify-center cursor-pointer hover:border-[var(--primary-border)] transition-colors relative overflow-hidden bg-background shrink-0"
                   @mouseenter="($event.currentTarget as HTMLElement).querySelector('.delete-btn')?.classList.remove('hidden')"
                   @mouseleave="($event.currentTarget as HTMLElement).querySelector('.delete-btn')?.classList.add('hidden')"
                   @click="handleImageUpload(field.name)">
@@ -62,7 +62,7 @@
                     <i class="ri-upload-2-line text-2xl mb-1"></i>
                   </div>
                   <div v-if="form[field.name]"
-                    class="delete-btn hidden absolute top-1 right-1 bg-red-500 hover:bg-red-600 text-white rounded-full w-5 h-5 flex items-center justify-center z-10 shadow-sm border border-white transition-colors cursor-pointer"
+                    class="delete-btn hidden absolute top-1 right-1 bg-destructive hover:bg-[var(--destructive-strong)] text-destructive-foreground rounded-full w-5 h-5 flex items-center justify-center z-10 shadow-sm border border-[var(--destructive-border)] transition-colors cursor-pointer"
                     :title="t('settings.theme.removeImage')" @click.stop="form[field.name] = ''">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-3.5 h-3.5">
                       <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
@@ -79,7 +79,7 @@
           <div class="flex justify-end items-center w-full">
             <Button
               variant="default"
-              class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-strong)] cursor-pointer"
+              class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-solid-hover)] cursor-pointer"
               @click="submit">
               {{ t('common.save') }}
             </Button>

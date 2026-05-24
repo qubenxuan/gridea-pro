@@ -22,7 +22,7 @@ const forwarded = useForwardProps(delegatedProps)
       'h-10 w-10 p-0 font-normal hover:bg-[var(--primary-soft-hover)] hover:text-[var(--primary-strong)] cursor-pointer rounded-md',
       '[&[data-today]:not([data-selected])]:bg-[var(--primary-soft-hover)] [&[data-today]:not([data-selected])]:text-[var(--primary-strong)]',
       // Selected
-      'data-[selected]:bg-primary data-[selected]:text-primary-foreground data-[selected]:opacity-100 data-[selected]:hover:bg-primary data-[selected]:hover:text-primary-foreground data-[selected]:focus:bg-primary data-[selected]:focus:text-primary-foreground',
+      'data-[selected]:bg-primary data-[selected]:text-primary-foreground data-[selected]:opacity-100 data-[selected]:hover:bg-[var(--primary-solid-hover)] data-[selected]:hover:text-primary-foreground data-[selected]:focus:bg-[var(--primary-solid-hover)] data-[selected]:focus:text-primary-foreground',
       // Disabled
       'data-[disabled]:text-muted-foreground data-[disabled]:opacity-50',
       // Outside View

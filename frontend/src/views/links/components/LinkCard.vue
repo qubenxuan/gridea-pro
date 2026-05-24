@@ -22,7 +22,7 @@
             {{ link.description }}
         </div>
 
-        <div class="flex items-center justify-between mt-auto pt-2 border-t border-border/50">
+        <div class="flex items-center justify-between mt-auto pt-2 border-t border-border">
             <!-- Drag Handle (Left) -->
             <div class="drag-handle p-1.5 -ml-1.5 text-muted-foreground hover:text-foreground cursor-move">
                 <Bars2Icon class="size-3" />

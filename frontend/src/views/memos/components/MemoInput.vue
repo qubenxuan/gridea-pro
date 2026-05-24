@@ -1,9 +1,9 @@
 <template>
     <div
-        class="memo-input-wrapper bg-card/50 border border-border/50 rounded-xl transition-all duration-200 ring-offset-background focus-within:ring-1 focus-within:ring-[var(--primary-border)] relative overflow-visible">
+        class="memo-input-wrapper bg-card border border-border rounded-xl transition-all duration-200 ring-offset-background focus-within:ring-1 focus-within:ring-[var(--primary-border)] relative overflow-visible">
         <div class="px-6 py-6 relative">
             <!-- Typewriter placeholder -->
-            <div v-if="!content && !isFocused" class="absolute inset-0 px-6 py-6 pointer-events-none text-sm leading-5 tracking-wider text-muted-foreground/50">
+            <div v-if="!content && !isFocused" class="absolute inset-0 px-6 py-6 pointer-events-none text-sm leading-5 tracking-wider text-muted-foreground opacity-60">
                 {{ typewriterText }}<span class="animate-blink">|</span>
             </div>
             <textarea
@@ -27,17 +27,17 @@ v-for="(tag, index) in filteredTags" :key="tag.name"
                 </div>
             </div>
         </div>
-        <div class="flex items-center justify-between px-4 pb-3 pt-2 border-t border-border/30">
+        <div class="flex items-center justify-between px-4 pb-3 pt-2 border-t border-border">
             <!-- 左下角：Markdown 支持提示 + 发布时间设置 -->
             <div class="flex items-center gap-1.5">
-                <span class="text-muted-foreground/40" :title="t('common.markdownSupported')">
+                <span class="text-muted-foreground opacity-60" :title="t('common.markdownSupported')">
                     <MarkdownIcon class="w-[18px] h-[11px]" />
                 </span>
                 <Popover @update:open="onPickerOpen">
                     <PopoverTrigger as-child>
                         <button
 type="button" :title="t('memo.setPublishTime')"
-                            class="flex items-center gap-1 h-6 px-1.5 rounded-md text-xs text-muted-foreground/60 hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] transition-colors cursor-pointer">
+                            class="flex items-center gap-1 h-6 px-1.5 rounded-md text-xs text-muted-foreground hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] transition-colors cursor-pointer">
                             <CalendarIcon class="w-3.5 h-3.5" />
                             <span v-if="publishDateTime" class="tabular-nums">{{ publishDateTime }}</span>
                         </button>
@@ -59,7 +59,7 @@ v-model="dateTimeDraft" placeholder="YYYY-MM-DD HH:mm:ss"
                 </Popover>
                 <button
 v-if="publishDateTime" type="button" :title="t('common.clear')"
-                    class="text-muted-foreground/40 hover:text-[var(--destructive-strong)] transition-colors cursor-pointer"
+                    class="text-muted-foreground opacity-60 hover:opacity-100 hover:text-[var(--destructive-strong)] transition-colors cursor-pointer"
                     @click="clearPublishDateTime">
                     <XMarkIcon class="w-3.5 h-3.5" />
                 </button>

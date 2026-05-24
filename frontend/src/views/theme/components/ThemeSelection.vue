@@ -166,14 +166,14 @@
                 {{ theme.description }}
               </p>
 
-              <div class="flex items-center justify-between pt-2 mt-auto border-t border-border/50">
+              <div class="flex items-center justify-between pt-2 mt-auto border-t border-border">
                 <span class="flex items-center gap-1 text-xs text-muted-foreground truncate max-w-[100px]"
                   :title="theme.author">
                   <UserIcon class="w-3 h-3" />
                   {{ theme.author }}
                 </span>
                 <Button size="sm" variant="secondary"
-                  class="h-7 text-[10px] rounded-full bg-[var(--primary-soft)] border border-[var(--primary-border)] text-[var(--primary-strong)] hover:bg-primary hover:text-primary-foreground transition-colors cursor-pointer"
+                  class="h-7 text-[10px] rounded-full bg-[var(--primary-soft)] border border-[var(--primary-border)] text-[var(--primary-strong)] hover:bg-[var(--primary-solid-hover)] hover:text-primary-foreground transition-colors cursor-pointer"
                   @click="useTheme(theme)">
                   {{ $t('settings.theme.use') }}
                 </Button>

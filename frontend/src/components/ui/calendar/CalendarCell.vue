@@ -16,7 +16,7 @@ const forwarded = useForwardProps(delegatedProps)
 
 <template>
   <CalendarCell
-    :class="cn('relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([data-selected])]:bg-accent [&:has([data-selected][data-outside-view])]:bg-accent/50 [&:has([data-inside-view][data-selected])]:bg-accent', props.class)"
+    :class="cn('relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([data-selected])]:bg-accent [&:has([data-selected][data-outside-view])]:bg-accent [&:has([data-inside-view][data-selected])]:bg-accent', props.class)"
     v-bind="forwarded"
   >
     <slot />

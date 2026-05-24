@@ -76,7 +76,7 @@
         }}</label>
         <div class="max-w-sm">
           <div
-            class="w-24 h-24 border-1 border-dashed border-input rounded-lg flex items-center justify-center cursor-pointer hover:border-primary transition-colors relative overflow-hidden bg-background"
+            class="w-24 h-24 border-1 border-dashed border-input rounded-lg flex items-center justify-center cursor-pointer hover:border-[var(--primary-border)] transition-colors relative overflow-hidden bg-background"
             @click="pickFavicon">
             <img v-if="faviconPath" :src="faviconPath" class="w-full h-full object-cover" />
             <div v-else class="flex flex-col items-center text-muted-foreground">
@@ -93,7 +93,7 @@
         }}</label>
         <div class="max-w-sm">
           <div
-            class="w-24 h-24 border-1 border-dashed border-input rounded-lg flex items-center justify-center cursor-pointer hover:border-primary transition-colors relative overflow-hidden bg-background"
+            class="w-24 h-24 border-1 border-dashed border-input rounded-lg flex items-center justify-center cursor-pointer hover:border-[var(--primary-border)] transition-colors relative overflow-hidden bg-background"
             @click="pickAvatar">
             <img v-if="avatarPath" :src="avatarPath" class="w-full h-full object-cover" />
             <div v-else class="flex flex-col items-center text-muted-foreground">
@@ -110,7 +110,7 @@
       <div class="flex justify-end w-full">
         <Button
 variant="default"
-          class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-strong)] cursor-pointer"
+          class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-solid-hover)] cursor-pointer"
           @click="saveTheme">
           {{ $t('common.save') }}
         </Button>

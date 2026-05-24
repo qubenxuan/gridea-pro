@@ -65,7 +65,7 @@ variant="default"
           class="w-36 h-8 text-xs justify-center rounded-full cursor-pointer"
           :class="publishLoading
             ? 'bg-destructive text-destructive-foreground hover:bg-[var(--destructive-strong)]'
-            : 'bg-primary text-primary-foreground hover:bg-[var(--primary-strong)]'"
+            : 'bg-primary text-primary-foreground hover:bg-[var(--primary-solid-hover)]'"
           @click="publishLoading ? cancelPublish() : publish()">
           <template v-if="publishLoading && !cancelling">
             <svg
@@ -139,7 +139,7 @@ fill-rule="evenodd" clip-rule="evenodd"
       <!-- 内层固定 380px 宽，父层 width 过渡期间不会挤压内容 -->
       <div class="w-[380px] h-full flex flex-col">
         <!-- Header -->
-        <div class="px-5 py-4 border-b border-border/60 flex items-start justify-between gap-3">
+        <div class="px-5 py-4 border-b border-border flex items-start justify-between gap-3">
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-2 mb-1.5">
               <span
@@ -150,8 +150,8 @@ fill-rule="evenodd" clip-rule="evenodd"
               </span>
               <span
                 v-else-if="deployOutcome === 'success'"
-                class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-green-500/10 text-green-600 dark:text-green-400 text-[11px] font-medium">
-                <span class="size-1.5 rounded-full bg-green-500"></span>
+                    class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[var(--success-soft)] text-[var(--success-strong)] text-[11px] font-medium">
+                <span class="size-1.5 rounded-full bg-[var(--success-solid)]"></span>
                 部署完成
               </span>
               <span
@@ -162,8 +162,8 @@ fill-rule="evenodd" clip-rule="evenodd"
               </span>
               <span
                 v-else
-                class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-muted text-muted-foreground text-[11px] font-medium">
-                <span class="size-1.5 rounded-full bg-muted-foreground/40"></span>
+                    class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-muted text-muted-foreground text-[11px] font-medium">
+                <span class="size-1.5 rounded-full bg-muted-foreground"></span>
                 已取消
               </span>
             </div>
@@ -179,7 +179,7 @@ fill-rule="evenodd" clip-rule="evenodd"
         </div>
 
         <!-- 进度条：只有日志里解析到数字才显示 -->
-        <div v-if="deployProgress.total > 0" class="px-5 py-3 border-b border-border/60">
+        <div v-if="deployProgress.total > 0" class="px-5 py-3 border-b border-border">
           <div class="flex items-center justify-between text-[11px] text-muted-foreground mb-2">
             <span>{{ deployProgress.label }}</span>
             <span class="font-mono tabular-nums">{{ deployProgress.done }} / {{ deployProgress.total }}</span>
@@ -190,7 +190,7 @@ fill-rule="evenodd" clip-rule="evenodd"
               :style="{ width: `${deployProgress.pct}%` }"></div>
           </div>
           <div v-if="deployProgress.failed > 0" class="mt-2 flex items-center gap-3 text-[10px]">
-            <span class="text-green-600 dark:text-green-400">
+            <span class="text-[var(--success-strong)]">
               ✓ 成功 {{ deployProgress.done - deployProgress.failed }}
             </span>
             <span class="text-[var(--destructive-strong)]">✗ 失败 {{ deployProgress.failed }}</span>
@@ -215,7 +215,7 @@ fill-rule="evenodd" clip-rule="evenodd"
         </div>
 
         <!-- Footer -->
-        <div class="px-4 py-3 border-t border-border/60 bg-muted/30 flex items-center justify-between gap-2">
+        <div class="px-4 py-3 border-t border-border bg-card flex items-center justify-between gap-2">
           <span class="text-[10px] text-muted-foreground font-mono tabular-nums">
             {{ deployLogs.length }} 行
           </span>
@@ -252,7 +252,7 @@ fill-rule="evenodd" clip-rule="evenodd"
                 {{ t('update.title') }}
               </h2>
               <div class="inline-flex items-center gap-1.5">
-                <span class="inline-flex items-center justify-center h-4 px-2 rounded-full bg-muted/60 text-[10px] text-muted-foreground border border-border/60 font-mono">
+                <span class="inline-flex items-center justify-center h-4 px-2 rounded-full bg-muted text-[10px] text-muted-foreground border border-border font-mono">
                   v{{ currentVersion }}
                 </span>
                 <ArrowRightIcon class="size-3 text-muted-foreground" />
@@ -265,14 +265,14 @@ fill-rule="evenodd" clip-rule="evenodd"
         </div>
 
         <!-- Release notes -->
-        <div class="px-8 py-5 max-h-[320px] overflow-y-auto border-t border-border/60">
-          <div class="release-notes text-xs text-foreground/90 leading-relaxed" v-html="updateContent"></div>
+        <div class="px-8 py-5 max-h-[320px] overflow-y-auto border-t border-border">
+          <div class="release-notes text-xs text-foreground leading-relaxed" v-html="updateContent"></div>
         </div>
 
         <!-- Progress (downloading / ready / error) -->
         <div
           v-if="updateState !== 'idle'"
-          class="px-6 pt-3 pb-1 border-t border-border/60">
+          class="px-6 pt-3 pb-1 border-t border-border">
           <div v-if="updateState === 'downloading'" class="space-y-1.5">
             <div class="flex items-center justify-between text-[11px] text-muted-foreground font-mono">
               <span>{{ formatBytes(downloadReceived) }} / {{ formatBytes(downloadTotal) }}</span>
@@ -298,7 +298,7 @@ fill-rule="evenodd" clip-rule="evenodd"
         </div>
 
         <!-- Footer -->
-        <div class="px-6 py-4 border-t border-border/60 bg-muted/30 flex items-center justify-between gap-3">
+        <div class="px-6 py-4 border-t border-border bg-card flex items-center justify-between gap-3">
           <div class="flex items-center gap-3">
             <button
               :title="t('update.viewOnGithub')"
@@ -326,7 +326,7 @@ fill-rule="evenodd" clip-rule="evenodd"
               </Button>
               <Button
                 variant="default"
-                class="w-24 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-strong)] cursor-pointer"
+                class="w-24 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-solid-hover)] cursor-pointer"
                 @click="startUpdate">
                 {{ t('update.install') }}
               </Button>
@@ -350,7 +350,7 @@ fill-rule="evenodd" clip-rule="evenodd"
               </Button>
               <Button
                 variant="default"
-                class="w-24 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-strong)] cursor-pointer"
+                class="w-24 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-solid-hover)] cursor-pointer"
                 @click="applyUpdate">
                 {{ t('update.restart') }}
               </Button>
@@ -365,7 +365,7 @@ fill-rule="evenodd" clip-rule="evenodd"
               </Button>
               <Button
                 variant="default"
-                class="w-24 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-strong)] cursor-pointer"
+                class="w-24 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-solid-hover)] cursor-pointer"
                 @click="startUpdate">
                 {{ t('update.retry') }}
               </Button>
@@ -560,8 +560,8 @@ const logLineIcon = (entry: string): string => {
 
 const logLineClass = (entry: string): string => {
   if (/^上传\s.+\s失败/.test(entry) || /^\s*✗\s/.test(entry) || /❌/.test(entry)) return 'text-[var(--destructive-strong)]'
-  if (/^✅/.test(entry) || /部署成功|上传完成，共上传/.test(entry)) return 'text-green-600 dark:text-green-400'
-  if (/⚠️|警告/.test(entry)) return 'text-amber-600 dark:text-amber-400'
+  if (/^✅/.test(entry) || /部署成功|上传完成，共上传/.test(entry)) return 'text-[var(--success-strong)]'
+  if (/⚠️|警告/.test(entry)) return 'text-[var(--warning-strong)]'
   return 'text-muted-foreground'
 }
 

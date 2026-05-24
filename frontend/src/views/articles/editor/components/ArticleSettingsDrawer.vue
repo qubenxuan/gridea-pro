@@ -106,7 +106,7 @@
                             :placeholder="$t('article.featureImagePlaceholder') || 'Image URL or Local Path'"
                             @update:model-value="(val: any) => $emit('update:featureDisplayValue', val as string)" />
 
-                        <div class="feature-uploader cursor-pointer border border-dashed rounded-md p-4 text-center hover:border-primary transition-colors bg-background"
+                        <div class="feature-uploader cursor-pointer border border-dashed rounded-md p-4 text-center hover:border-[var(--primary-border)] transition-colors bg-background"
                             @click="$emit('selectFeatureImage')">
                             <div v-if="featureImagePreviewSrc">
                                 <img class="feature-image mx-auto max-h-[150px] object-cover rounded-md"
@@ -153,7 +153,7 @@
                     {{ $t('common.cancel') }}
                 </Button>
                 <Button variant="default"
-                    class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-strong)] cursor-pointer"
+                    class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-solid-hover)] cursor-pointer"
                     @click="$emit('confirmPublish')">
                     {{ $t('article.publish') }}
                 </Button>

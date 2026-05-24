@@ -65,7 +65,7 @@ v-if="memoStore.tagStats.length > 0"
                     class="flex-1 overflow-y-auto p-4 pt-0 min-h-0 overscroll-none">
                     <div class="space-y-1">
                         <div
-                            class="flex items-center justify-between px-2 py-2 text-xs text-muted-foreground sticky top-0 bg-background/95 backdrop-blur-sm z-10">
+                            class="flex items-center justify-between px-2 py-2 text-xs text-muted-foreground sticky top-0 bg-background z-10">
                             <span>{{ t('memo.tags') }}</span>
                             <span class="text-xs font-medium opacity-80">{{ memoStore.totalTags }}</span>
                         </div>

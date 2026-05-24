@@ -12,7 +12,7 @@ position="top-center" :expand="false" rich-colors :duration="2000" :close-button
 
 
 
-    <div v-if="error" class="fixed inset-0 z-[99999] overflow-auto bg-white p-5 text-red-600 whitespace-pre-wrap">
+    <div v-if="error" class="fixed inset-0 z-[99999] overflow-auto bg-background p-5 text-[var(--destructive-strong)] whitespace-pre-wrap">
       <h1 class="text-2xl font-bold mb-4">Runtime Error</h1>
       <pre class="text-sm">{{ error }}</pre>
     </div>

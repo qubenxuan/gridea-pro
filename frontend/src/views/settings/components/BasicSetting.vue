@@ -21,22 +21,22 @@
                 <!-- 状态 chip -->
                 <template v-if="activeStatus?.connected && activeStatus?.connectedVia === 'oauth'">
                   <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-green-500/10 text-green-600 dark:text-green-400 text-[11px] font-medium">
-                    <span class="size-1.5 rounded-full bg-green-500 inline-block"></span>
+                    class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[var(--success-soft)] text-[var(--success-strong)] text-[11px] font-medium">
+                    <span class="size-1.5 rounded-full bg-[var(--success-solid)] inline-block"></span>
                     {{ t('settings.network.connected') }}
                   </span>
                 </template>
                 <template v-else-if="activeStatus?.connected && activeStatus?.connectedVia === 'manual'">
                   <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-[11px] font-medium">
-                    <span class="size-1.5 rounded-full bg-amber-500 inline-block"></span>
+                    class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[var(--warning-soft)] text-[var(--warning-strong)] text-[11px] font-medium">
+                    <span class="size-1.5 rounded-full bg-[var(--warning-solid)] inline-block"></span>
                     {{ t('settings.network.configured') }}
                   </span>
                 </template>
                 <template v-else>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-muted text-muted-foreground text-[11px] font-medium">
-                    <span class="size-1.5 rounded-full bg-muted-foreground/40 inline-block"></span>
+                    <span class="size-1.5 rounded-full bg-muted-foreground inline-block"></span>
                     {{ t('settings.network.notConnected') }}
                   </span>
                 </template>
@@ -64,13 +64,13 @@
               <template v-else-if="activeStatus?.connected && activeStatus?.connectedVia === 'manual'">
                 <template v-if="activePlatformData.hasOAuth">
                   <Button v-if="!oauthLoading[activePlatformData.id]" variant="default" size="sm"
-                    class="h-8 text-xs rounded-full px-4 bg-primary text-primary-foreground hover:bg-[var(--primary-strong)]"
+                    class="h-8 text-xs rounded-full px-4 bg-primary text-primary-foreground hover:bg-[var(--primary-solid-hover)]"
                     @click="handleOAuth(activePlatformData.id)">
                     <KeyIcon class="size-3.5 mr-1.5" />
                     {{ t('settings.network.connectViaOAuth') }}
                   </Button>
                   <Button v-else variant="default" size="sm"
-                    class="h-8 text-xs rounded-full px-4 bg-primary text-primary-foreground hover:bg-destructive"
+                    class="h-8 text-xs rounded-full px-4 bg-primary text-primary-foreground hover:bg-[var(--destructive-strong)]"
                     @click="handleCancelOAuth(activePlatformData.id)">
                     <ArrowPathIcon class="size-3.5 animate-spin mr-1.5" />
                     {{ t('settings.network.waitingAuth') }}
@@ -87,13 +87,13 @@
               <template v-else>
                 <template v-if="activePlatformData.hasOAuth">
                   <Button v-if="!oauthLoading[activePlatformData.id]" variant="default" size="sm"
-                    class="h-8 text-xs rounded-full px-4 bg-primary text-primary-foreground hover:bg-[var(--primary-strong)]"
+                    class="h-8 text-xs rounded-full px-4 bg-primary text-primary-foreground hover:bg-[var(--primary-solid-hover)]"
                     @click="handleOAuth(activePlatformData.id)">
                     <KeyIcon class="size-3.5 mr-1.5" />
                     {{ t('settings.network.connectViaOAuth') }}
                   </Button>
                   <Button v-else variant="default" size="sm"
-                    class="h-8 text-xs rounded-full px-4 bg-primary text-primary-foreground hover:bg-destructive"
+                    class="h-8 text-xs rounded-full px-4 bg-primary text-primary-foreground hover:bg-[var(--destructive-strong)]"
                     @click="handleCancelOAuth(activePlatformData.id)">
                     <ArrowPathIcon class="size-3.5 animate-spin mr-1.5" />
                     {{ t('settings.network.waitingAuth') }}
@@ -111,7 +111,7 @@
 
           <!-- 已连接：用户信息 + 配置信息展示 -->
           <div v-if="activeStatus?.connected" class="px-6 pb-5 -mt-1">
-            <div class="flex flex-wrap items-center gap-x-5 gap-y-2 px-4 py-3 bg-muted/40 rounded-lg">
+            <div class="flex flex-wrap items-center gap-x-5 gap-y-2 px-4 py-3 bg-muted rounded-lg">
               <a v-if="activeStatus?.username" class="flex items-center gap-2 text-xs cursor-pointer"
                 @click="openUserProfile(activePlatformData.id, activeStatus.username)">
                 <img v-if="activeStatus?.avatarUrl" :src="activeStatus.avatarUrl"
@@ -121,7 +121,7 @@
                   }}</span>
               </a>
               <span v-if="activeStatus?.username && activeConfigItems.length > 0"
-                class="text-muted-foreground/30">·</span>
+                class="text-muted-foreground opacity-60">·</span>
               <div v-for="item in activeConfigItems" :key="item.value"
                 class="flex items-center gap-1.5 text-xs text-muted-foreground">
                 <component :is="item.icon" class="size-3.5 flex-shrink-0 opacity-50" />
@@ -151,18 +151,18 @@
                 <div class="flex items-center gap-2">
                   <span class="text-sm font-semibold text-foreground leading-tight">{{ p.name }}</span>
                   <span v-if="statuses[p.id]?.connected && statuses[p.id]?.connectedVia === 'oauth'"
-                    class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-green-500/10 text-green-600 dark:text-green-400 text-[10px] font-medium">
-                    <span class="size-1.5 rounded-full bg-green-500 inline-block"></span>
+                    class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-[var(--success-soft)] text-[var(--success-strong)] text-[10px] font-medium">
+                    <span class="size-1.5 rounded-full bg-[var(--success-solid)] inline-block"></span>
                     {{ t('settings.network.connected') }}
                   </span>
                   <span v-else-if="statuses[p.id]?.connected && statuses[p.id]?.connectedVia === 'manual'"
-                    class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-[10px] font-medium">
-                    <span class="size-1.5 rounded-full bg-amber-500 inline-block"></span>
+                    class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-[var(--warning-soft)] text-[var(--warning-strong)] text-[10px] font-medium">
+                    <span class="size-1.5 rounded-full bg-[var(--warning-solid)] inline-block"></span>
                     {{ t('settings.network.configured') }}
                   </span>
                   <span v-else
                     class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-muted text-muted-foreground text-[10px] font-medium">
-                    <span class="size-1.5 rounded-full bg-muted-foreground/40 inline-block"></span>
+                    <span class="size-1.5 rounded-full bg-muted-foreground inline-block"></span>
                     {{ t('settings.network.notConnected') }}
                   </span>
                 </div>
@@ -173,11 +173,11 @@
             <!-- 已连接：用户信息摘要 -->
             <div v-if="statuses[p.id]?.connected && statuses[p.id]?.username" class="mt-1 mb-3">
               <div
-                class="flex flex-wrap items-center gap-x-3 gap-y-1.5 px-3 py-2 bg-muted/40 rounded-lg text-[11px] text-muted-foreground">
+                class="flex flex-wrap items-center gap-x-3 gap-y-1.5 px-3 py-2 bg-muted rounded-lg text-[11px] text-muted-foreground">
                 <div class="flex items-center gap-1.5">
                   <img v-if="statuses[p.id]?.avatarUrl" :src="statuses[p.id].avatarUrl"
                     class="size-4 rounded-full flex-shrink-0" alt="" />
-                  <span class="font-medium text-foreground/70">{{ statuses[p.id].username }}</span>
+                  <span class="font-medium text-foreground">{{ statuses[p.id].username }}</span>
                 </div>
                 <template v-for="item in getCardItems(p.id)" :key="item.value">
                   <div class="flex items-center gap-1">
@@ -189,14 +189,14 @@
             </div>
 
             <!-- 底部操作 -->
-            <div class="flex items-center justify-between mt-auto pt-2.5 border-t border-border/50">
+            <div class="flex items-center justify-between mt-auto pt-2.5 border-t border-border">
               <button
                 class="p-1.5 text-muted-foreground hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] rounded-md transition-colors cursor-pointer"
                 :title="t('settings.network.configure')" @click.stop="openDrawer(p.id)">
                 <Cog6ToothIcon class="size-3.5" />
               </button>
               <Button size="sm" variant="secondary"
-                class="h-7 text-[10px] rounded-full px-3 bg-[var(--primary-soft)] border border-[var(--primary-border)] text-[var(--primary-strong)] hover:bg-primary hover:text-primary-foreground transition-colors cursor-pointer"
+                class="h-7 text-[10px] rounded-full px-3 bg-[var(--primary-soft)] border border-[var(--primary-border)] text-[var(--primary-strong)] hover:bg-[var(--primary-solid-hover)] hover:text-primary-foreground transition-colors cursor-pointer"
                 @click.stop="setActive(p.id)">
                 {{ t('settings.network.setAsActive') }}
               </Button>
@@ -234,17 +234,17 @@
 
           <!-- 已连接用户信息 -->
           <div v-if="statuses[drawerPlatform]?.connected && statuses[drawerPlatform]?.username"
-            class="flex items-center gap-3 px-4 py-3 bg-green-500/5 border border-green-500/15 rounded-lg">
+            class="flex items-center gap-3 px-4 py-3 bg-[var(--success-soft)] border border-[var(--success-border)] rounded-lg">
             <img v-if="statuses[drawerPlatform]?.avatarUrl" :src="statuses[drawerPlatform].avatarUrl"
               class="size-9 rounded-full flex-shrink-0" alt="" />
             <div
-              class="size-9 rounded-full bg-green-500/10 flex items-center justify-center flex-shrink-0 text-green-600"
+              class="size-9 rounded-full bg-[var(--success-soft)] flex items-center justify-center flex-shrink-0 text-[var(--success-strong)]"
               v-else>
               <UserIcon class="size-4.5" />
             </div>
             <div class="flex-1 min-w-0">
               <div class="text-sm font-semibold text-foreground">{{ statuses[drawerPlatform].username }}</div>
-              <div class="text-[11px] text-green-600 dark:text-green-400">
+              <div class="text-[11px] text-[var(--success-strong)]">
                 {{ statuses[drawerPlatform].connectedVia === 'oauth' ? 'OAuth · ' + t('settings.network.connected') :
                   t('settings.network.configured') }}
               </div>
@@ -253,7 +253,7 @@
 
           <!-- SFTP 提示 -->
           <div v-if="drawerPlatform === 'sftp'"
-            class="flex items-start gap-2 text-xs text-muted-foreground bg-muted/50 rounded-lg px-3 py-2.5">
+            class="flex items-start gap-2 text-xs text-muted-foreground bg-muted rounded-lg px-3 py-2.5">
             <InformationCircleIcon class="size-4 flex-shrink-0 mt-0.5" />
             {{ t('settings.network.sftpNote') }}
           </div>
@@ -449,7 +449,7 @@
           </template>
 
           <!-- ─ 代理设置（所有平台通用） ─ -->
-          <div class="mt-2 pt-4 border-t border-border/50">
+          <div class="mt-2 pt-4 border-t border-border">
             <div class="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">
               {{ t('settings.network.proxy') }}
             </div>
@@ -484,7 +484,7 @@
             {{ t('common.cancel') }}
           </Button>
           <Button variant="default"
-            class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-strong)] cursor-pointer"
+            class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-solid-hover)] cursor-pointer"
             :disabled="saveLoading" @click="saveDrawer">
             {{ saveLoading ? '...' : t('common.save') }}
           </Button>
