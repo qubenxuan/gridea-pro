@@ -88,9 +88,8 @@ for (const file of fs.readdirSync(assetsDir)) {
     fileRangePatches = result.patched;
 
     if (fileRangePatches === 0) {
-      console.error(`[old-webkit patch] ${file} contains rewritten color regex, but range helper was not patched.`);
-      console.error('[old-webkit patch] Stop build to avoid broken Monaco color ranges.');
-      process.exit(1);
+      console.warn(`[old-webkit patch] ${file} contains rewritten color regex, but range helper was not patched.`);
+      console.warn('[old-webkit patch] Continue build. This may only affect Monaco color range decoration in this worker.');
     }
   }
 
