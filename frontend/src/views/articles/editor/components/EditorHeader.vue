@@ -4,14 +4,14 @@
         <div class="flex justify-end gap-2">
             <Button
 variant="ghost" size="sm"
-                class="rounded-full text-muted-foreground hover:bg-[var(--primary-soft)] hover:text-foreground h-8 w-12 p-0"
+                class="rounded-full text-muted-foreground hover:bg-[var(--primary-soft)] hover:text-[var(--primary-strong)] h-8 w-12 p-0"
                 :title="$t('common.back')" @click="$emit('close')">
                 <ArrowLeftIcon class="size-3" />
             </Button>
 
             <Button
 variant="ghost" size="sm"
-                class="rounded-full text-muted-foreground hover:bg-[var(--primary-soft)] hover:text-foreground h-8 w-12 p-0"
+                class="rounded-full text-muted-foreground hover:bg-[var(--primary-soft)] hover:text-[var(--primary-strong)] h-8 w-12 p-0"
                 :disabled="!canSubmit" :title="$t('article.saveDraft')" @click="$emit('saveDraft')">
                 <CheckIcon class="size-3" />
             </Button>
@@ -32,11 +32,11 @@ variant="ghost" size="sm"
             <PopoverTrigger as-child>
                 <Button
 variant="ghost" size="sm"
-                    class="rounded-full text-muted-foreground hover:text-foreground hover:bg-[var(--primary-soft)] h-8 w-8 p-0">
+                    class="rounded-full text-muted-foreground hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] h-8 w-8 p-0">
                     <InformationCircleIcon class="size-4" />
                 </Button>
             </PopoverTrigger>
-            <PopoverContent side="left" align="start" class="w-48 p-4 bg-[var(--primary-soft)] transition-colors duration-200">
+            <PopoverContent side="left" align="start" class="w-48 p-4 bg-card text-card-foreground border border-border transition-colors duration-200">
                 <div class="post-stats">
                     <div class="item">
                         <h4>{{ $t('article.words') }}</h4>
@@ -55,7 +55,7 @@ variant="ghost" size="sm"
             <PopoverTrigger as-child>
                 <Button
 variant="ghost" size="sm"
-                    class="rounded-full text-muted-foreground hover:text-foreground hover:bg-secondary h-8 w-8 p-0">
+                    class="rounded-full text-muted-foreground hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] h-8 w-8 p-0">
                     <FaceSmileIcon class="size-4" />
                 </Button>
             </PopoverTrigger>
@@ -66,28 +66,28 @@ variant="ghost" size="sm"
 
         <Button
 variant="ghost" size="sm"
-            class="rounded-full text-muted-foreground hover:text-foreground hover:bg-secondary h-8 w-8 p-0"
+            class="rounded-full text-muted-foreground hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] h-8 w-8 p-0"
             :title="$t('article.insertImage')" @click="$emit('insertImage')">
             <PhotoIcon class="size-4" />
         </Button>
 
         <Button
 variant="ghost" size="sm"
-            class="rounded-full text-muted-foreground hover:text-foreground hover:bg-secondary h-8 w-8 p-0"
+            class="rounded-full text-muted-foreground hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] h-8 w-8 p-0"
             :title="$t('article.insertMore')" @click="$emit('insertMore')">
             <EllipsisHorizontalIcon class="size-4" />
         </Button>
 
         <Button
 variant="ghost" size="sm"
-            class="rounded-full text-muted-foreground hover:text-foreground hover:bg-secondary h-8 w-8 p-0"
+            class="rounded-full text-muted-foreground hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] h-8 w-8 p-0"
             :title="$t('article.settings')" @click="$emit('openSettings')">
             <Cog6ToothIcon class="size-4" />
         </Button>
 
         <Button
 variant="ghost" size="sm"
-            class="rounded-full text-muted-foreground hover:text-foreground hover:bg-secondary h-8 w-8 p-0"
+            class="rounded-full text-muted-foreground hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] h-8 w-8 p-0"
             :title="`${$t('nav.preview')} [Ctrl + P]`" @click="$emit('preview')">
             <EyeIcon class="size-4" />
         </Button>
@@ -99,7 +99,7 @@ variant="ghost" size="sm"
             <PopoverTrigger as-child>
                 <Button
 variant="ghost" size="sm"
-                    class="rounded-full text-muted-foreground hover:text-foreground hover:bg-secondary h-8 w-8 p-0">
+                    class="rounded-full text-muted-foreground hover:text-[var(--primary-strong)] hover:bg-[var(--primary-soft)] h-8 w-8 p-0">
                     <i class="ri-keyboard-line"></i>
                 </Button>
             </PopoverTrigger>

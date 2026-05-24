@@ -119,10 +119,14 @@
                             </div>
                         </div>
 
-                        <Button v-if="featureDisplayValue" variant="destructive" size="sm" class="mt-2 w-full"
+                        <Button
+                            v-if="featureDisplayValue"
+                            variant="destructive"
+                            size="sm"
+                            class="mt-2 w-full bg-destructive text-destructive-foreground hover:bg-[var(--destructive-strong)] hover:text-destructive-foreground"
                             @click.stop="$emit('clearFeatureImage')">
                             <template #icon>
-                                <TrashIcon class="size-4 mr-2" />
+                                <TrashIcon class="size-4 mr-2 text-current" />
                             </template>
                             {{ $t('common.delete') }}
                         </Button>
@@ -149,7 +153,7 @@
                     {{ $t('common.cancel') }}
                 </Button>
                 <Button variant="default"
-                    class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
+                    class="w-18 h-8 text-xs justify-center rounded-full bg-primary text-primary-foreground hover:bg-[var(--primary-strong)] cursor-pointer"
                     @click="$emit('confirmPublish')">
                     {{ $t('article.publish') }}
                 </Button>
